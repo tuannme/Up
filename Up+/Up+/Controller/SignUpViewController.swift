@@ -42,7 +42,12 @@ class SignUpViewController: UIViewController {
 
     func policyAction()  {
         let alert = UIAlertController(title: "this is policy", message: "hello", preferredStyle: .alert)
-        alert.show(self, sender: nil)
+        let action = UIAlertAction(title: "OK", style: .default) { action in
+
+        }
+        alert.addAction(action)
+        self .present(alert, animated: true, completion: nil)
+        
     }
   
     override func didReceiveMemoryWarning() {

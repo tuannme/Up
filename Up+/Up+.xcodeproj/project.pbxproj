@@ -19,6 +19,8 @@
 		1A4A19FF1E49C92A004B4351 /* app_icon_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A19FA1E49C92A004B4351 /* app_icon_180.png */; };
 		1A4A1A001E49C92A004B4351 /* ic_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A19FC1E49C92A004B4351 /* ic_facebook.png */; };
 		1A4A1A011E49C92A004B4351 /* ic_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A19FD1E49C92A004B4351 /* ic_google.png */; };
+		1A4A1A031E49D6CE004B4351 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A1A021E49D6CE004B4351 /* TabViewController.swift */; };
+		1A4A1A061E49D947004B4351 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A1A051E49D947004B4351 /* MessageViewController.swift */; };
 		D9F1021ABAD467ECF1C21C31 /* Pods_Up_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7FAE133A85C91D325BAC2F /* Pods_Up_.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		1A4A19FA1E49C92A004B4351 /* app_icon_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_180.png; sourceTree = "<group>"; };
 		1A4A19FC1E49C92A004B4351 /* ic_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_facebook.png; sourceTree = "<group>"; };
 		1A4A19FD1E49C92A004B4351 /* ic_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_google.png; sourceTree = "<group>"; };
+		1A4A1A021E49D6CE004B4351 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		1A4A1A051E49D947004B4351 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		2A7FAE133A85C91D325BAC2F /* Pods_Up_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Up_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC4118E76F794A540725CCAD /* Pods-Up+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.release.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.release.xcconfig"; sourceTree = "<group>"; };
 		F65323719597DB1A99F31D5C /* Pods-Up+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		1A4A19F11E49C917004B4351 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1A4A1A041E49D925004B4351 /* TabController */,
 				1A4A19F21E49C917004B4351 /* LoginViewController.swift */,
 				1A4A19F31E49C917004B4351 /* MainViewController.swift */,
 				1A4A19F41E49C917004B4351 /* SignUpViewController.swift */,
@@ -132,6 +137,15 @@
 			);
 			name = Resource;
 			path = "Up+/Resource";
+			sourceTree = "<group>";
+		};
+		1A4A1A041E49D925004B4351 /* TabController */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A1A021E49D6CE004B4351 /* TabViewController.swift */,
+				1A4A1A051E49D947004B4351 /* MessageViewController.swift */,
+			);
+			name = TabController;
 			sourceTree = "<group>";
 		};
 		A96EEA715BCFA6F167564F10 /* Frameworks */ = {
@@ -279,11 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A4A1A031E49D6CE004B4351 /* TabViewController.swift in Sources */,
 				1A4A19F51E49C917004B4351 /* LoginViewController.swift in Sources */,
 				1A4A19D71E49C6FB004B4351 /* AppDelegate.swift in Sources */,
 				1A4A19F01E49C8E5004B4351 /* JumpDownSegue.swift in Sources */,
 				1A4A19F61E49C917004B4351 /* MainViewController.swift in Sources */,
 				1A4A19F71E49C917004B4351 /* SignUpViewController.swift in Sources */,
+				1A4A1A061E49D947004B4351 /* MessageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
