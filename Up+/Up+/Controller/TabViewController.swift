@@ -16,16 +16,16 @@ class TabViewController: UIViewController {
     @IBOutlet weak var timelineTab: UIView!
     @IBOutlet weak var moreTab: UIView!
     
-    let messageVC:MessageViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
+ 
+    @IBOutlet weak var messageTabLeadingConstraint: NSLayoutConstraint!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let sb = UIStoryboard(name: "Main", bundle: nil)
-        //messageVC = sb.instantiateViewController(withIdentifier: "MessageViewController") as? MessageViewController
-        self.windows .addSubview((messageVC.view)!)
-        self .addChildViewController(messageVC)
-        
+
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(messageAction))
         messageTab.addGestureRecognizer(tap1)
         
@@ -41,19 +41,19 @@ class TabViewController: UIViewController {
     }
 
     func messageAction(){
-        
+        messageTabLeadingConstraint.constant = 0
     }
     
     func contactAction(){
-        
+        messageTabLeadingConstraint.constant = -UIScreen.main.bounds.size.width
     }
     
     func timelineAction(){
-        
+        messageTabLeadingConstraint.constant = -2*UIScreen.main.bounds.size.width
     }
     
     func moreAction(){
-        
+        messageTabLeadingConstraint.constant = -3*UIScreen.main.bounds.size.width
     }
     
     override func didReceiveMemoryWarning() {
