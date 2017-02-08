@@ -15,12 +15,13 @@ class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
     }
     
+   
 
-    
-    
+
     // tableview delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
