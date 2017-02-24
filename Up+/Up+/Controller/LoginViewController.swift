@@ -32,11 +32,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        fbLoginBt.delegate = self;
-        //        fbLoginBt.layer.cornerRadius = 20;
-        //        fbLoginBt.clipsToBounds = YES;
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         loginBt.layer.cornerRadius = 5.0
@@ -53,7 +48,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
     
     
     func rotated() {

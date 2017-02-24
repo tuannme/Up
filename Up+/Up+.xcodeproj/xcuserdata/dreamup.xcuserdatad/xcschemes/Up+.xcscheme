@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A4A19D21E49C6FB004B4351"
+               BlueprintIdentifier = "1A135A641E5BECEE00655294"
                BuildableName = "Up+.app"
                BlueprintName = "Up+"
                ReferencedContainer = "container:Up+.xcodeproj">
@@ -28,11 +28,31 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1A135A781E5BECEE00655294"
+               BuildableName = "Up+Tests.xctest"
+               BlueprintName = "Up+Tests"
+               ReferencedContainer = "container:Up+.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1A135A831E5BECEE00655294"
+               BuildableName = "Up+UITests.xctest"
+               BlueprintName = "Up+UITests"
+               ReferencedContainer = "container:Up+.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A4A19D21E49C6FB004B4351"
+            BlueprintIdentifier = "1A135A641E5BECEE00655294"
             BuildableName = "Up+.app"
             BlueprintName = "Up+"
             ReferencedContainer = "container:Up+.xcodeproj">
@@ -55,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A4A19D21E49C6FB004B4351"
+            BlueprintIdentifier = "1A135A641E5BECEE00655294"
             BuildableName = "Up+.app"
             BlueprintName = "Up+"
             ReferencedContainer = "container:Up+.xcodeproj">
@@ -74,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A4A19D21E49C6FB004B4351"
+            BlueprintIdentifier = "1A135A641E5BECEE00655294"
             BuildableName = "Up+.app"
             BlueprintName = "Up+"
             ReferencedContainer = "container:Up+.xcodeproj">

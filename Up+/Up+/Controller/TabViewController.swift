@@ -10,15 +10,16 @@ import UIKit
 
 class TabViewController: UIViewController {
     
-    @IBOutlet weak var windows: UIView!
     @IBOutlet weak var messageTab: UIView!
     @IBOutlet weak var contactTab: UIView!
     @IBOutlet weak var timelineTab: UIView!
     @IBOutlet weak var moreTab: UIView!
+    @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
     
     var frameW = UIScreen.main.bounds.size.width
     var frameH = UIScreen.main.bounds.size.height
     var currentTab = 0
+    var landscape = false
     
     @IBOutlet weak var messageTabLeadingConstraint: NSLayoutConstraint!
     
@@ -48,13 +49,11 @@ class TabViewController: UIViewController {
     func messageAction(){
         currentTab = 0
         self.rotated()
-        
     }
     
     func contactAction(){
         currentTab = 1
         self.rotated()
-        
     }
     
     func timelineAction(){
@@ -75,18 +74,46 @@ class TabViewController: UIViewController {
     func rotated() {
         
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            print("Landscape")
-            messageTabLeadingConstraint.constant = -CGFloat(currentTab)*frameH
+            landscape = true
+            landscapeAction()
+            return
         }
         
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            print("Portrait")
-            messageTabLeadingConstraint.constant = -CGFloat(currentTab)*frameW
+            landscape = false
+            portraitAction()
+             return
         }
         
+        if(landscape){
+            landscapeAction()
+        }else{
+            portraitAction()
+        }
     }
     
     
+    func landscapeAction(){
+        print("Landscape")
+        landscape = true
+        messageTabLeadingConstraint.constant = -CGFloat(currentTab)*frameH
+        
+        UIView .animate(withDuration: 0.2, animations: {
+            self.lineViewLeadingConstraint.constant = CGFloat(self.currentTab)*self.frameH/4;
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func portraitAction(){
+        print("Portrait")
+        landscape = false
+        messageTabLeadingConstraint.constant = -CGFloat(currentTab)*frameW
+
+        UIView .animate(withDuration: 0.2, animations: {
+            self.lineViewLeadingConstraint.constant = CGFloat(self.currentTab)*self.frameW/4;
+            self.view.layoutIfNeeded()
+        })
+    }
     
     
 }
