@@ -32,6 +32,10 @@
 		1A74EC971E5FEBB2000F0088 /* InputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC961E5FEBB2000F0088 /* InputAccessoryView.swift */; };
 		1A74EC991E6009FF000F0088 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */; };
 		64945DAE4A9B3FAACBF8BAC7 /* Pods_Up_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A574B742D5EA8C7E4B1B644C /* Pods_Up_.framework */; };
+		CA66BF601E647383009F1607 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66BF5F1E647383009F1607 /* LocationManager.swift */; };
+		CA742D6E1E61DB1E00E15A7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */; };
+		CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA742D741E629EA000E15A7A /* SpinnerSwift.swift */; };
+		CA742D771E62AE2700E15A7A /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = CA742D761E62AE2700E15A7A /* spinner.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +59,7 @@
 		1A135A651E5BECEE00655294 /* Up+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Up+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A135A681E5BECEE00655294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A135A6D1E5BECEE00655294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1A135A6F1E5BECEE00655294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A135A6F1E5BECEE00655294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		1A135A721E5BECEE00655294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A135A741E5BECEE00655294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A135A791E5BECEE00655294 /* Up+Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Up+Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,12 @@
 		52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.release.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.release.xcconfig"; sourceTree = "<group>"; };
 		A574B742D5EA8C7E4B1B644C /* Pods_Up_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Up_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.debug.xcconfig"; sourceTree = "<group>"; };
+		CA66BF5D1E6454C9009F1607 /* Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		CA66BF5F1E647383009F1607 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CA742D331E612D3700E15A7A /* Up-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Up-Bridging-Header.h"; sourceTree = "<group>"; };
+		CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CA742D741E629EA000E15A7A /* SpinnerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerSwift.swift; sourceTree = "<group>"; };
+		CA742D761E62AE2700E15A7A /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,15 +148,13 @@
 		1A135A671E5BECEE00655294 /* Up+ */ = {
 			isa = PBXGroup;
 			children = (
+				CA742D341E61DAAC00E15A7A /* Configuration */,
 				1A135AB21E5BEEEF00655294 /* Resource */,
-				1A135AA61E5BEEEF00655294 /* AppIcon */,
+				CA66BF5E1E647341009F1607 /* Model */,
 				1A135AA91E5BEEEF00655294 /* Controller */,
 				1A135AB61E5BEEEF00655294 /* View */,
 				1A135A6C1E5BECEE00655294 /* Main.storyboard */,
 				1A135A681E5BECEE00655294 /* AppDelegate.swift */,
-				1A135A6F1E5BECEE00655294 /* Assets.xcassets */,
-				1A135A711E5BECEE00655294 /* LaunchScreen.storyboard */,
-				1A135A741E5BECEE00655294 /* Info.plist */,
 			);
 			path = "Up+";
 			sourceTree = "<group>";
@@ -175,18 +183,18 @@
 				1A135AA71E5BEEEF00655294 /* app_icon_120.png */,
 				1A135AA81E5BEEEF00655294 /* app_icon_180.png */,
 			);
-			path = AppIcon;
+			name = AppIcon;
+			path = ../AppIcon;
 			sourceTree = "<group>";
 		};
 		1A135AA91E5BEEEF00655294 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA742D6F1E61DDDA00E15A7A /* LoginController */,
 				1A135ACA1E5C2AF400655294 /* MessageController */,
 				1A135AAA1E5BEEEF00655294 /* ContactViewController.swift */,
-				1A135AAB1E5BEEEF00655294 /* LoginViewController.swift */,
 				1A135AAC1E5BEEEF00655294 /* MainViewController.swift */,
 				1A135AAE1E5BEEEF00655294 /* MoreViewController.swift */,
-				1A135AAF1E5BEEEF00655294 /* SignUpViewController.swift */,
 				1A135AB01E5BEEEF00655294 /* TabViewController.swift */,
 				1A135AB11E5BEEEF00655294 /* TimelineViewController.swift */,
 			);
@@ -196,6 +204,9 @@
 		1A135AB21E5BEEEF00655294 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1A135AA61E5BEEEF00655294 /* AppIcon */,
+				CA742D761E62AE2700E15A7A /* spinner.png */,
+				1A135A6F1E5BECEE00655294 /* Assets.xcassets */,
 				1A135AB31E5BEEEF00655294 /* ic_facebook.png */,
 				1A135AB41E5BEEEF00655294 /* ic_google.png */,
 				1A135AB51E5BEEEF00655294 /* ic_user.png */,
@@ -206,6 +217,7 @@
 		1A135AB61E5BEEEF00655294 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA742D701E629E6300E15A7A /* Spinner */,
 				1A74EC951E5FEB87000F0088 /* Cell */,
 				1A74EC941E5FEB7D000F0088 /* Segue */,
 				1A74EC931E5FEB74000F0088 /* InputView */,
@@ -254,6 +266,43 @@
 				52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA66BF5E1E647341009F1607 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA66BF5F1E647383009F1607 /* LocationManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA742D341E61DAAC00E15A7A /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */,
+				1A135A711E5BECEE00655294 /* LaunchScreen.storyboard */,
+				CA742D331E612D3700E15A7A /* Up-Bridging-Header.h */,
+				1A135A741E5BECEE00655294 /* Info.plist */,
+				CA66BF5D1E6454C9009F1607 /* Configuration.h */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		CA742D6F1E61DDDA00E15A7A /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				1A135AAF1E5BEEEF00655294 /* SignUpViewController.swift */,
+				1A135AAB1E5BEEEF00655294 /* LoginViewController.swift */,
+			);
+			name = LoginController;
+			sourceTree = "<group>";
+		};
+		CA742D701E629E6300E15A7A /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				CA742D741E629EA000E15A7A /* SpinnerSwift.swift */,
+			);
+			name = Spinner;
 			sourceTree = "<group>";
 		};
 		F823F9B8A62C18261A2F6581 /* Frameworks */ = {
@@ -335,16 +384,19 @@
 				TargetAttributes = {
 					1A135A641E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9ZZR5T4Q5D;
+						DevelopmentTeam = GJE9S37JFS;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					1A135A781E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1A135A641E5BECEE00655294;
 					};
 					1A135A831E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1A135A641E5BECEE00655294;
 					};
@@ -377,8 +429,10 @@
 			files = (
 				1A135AC61E5BEEEF00655294 /* ic_user.png in Resources */,
 				1A135ABB1E5BEEEF00655294 /* app_icon_180.png in Resources */,
+				CA742D6E1E61DB1E00E15A7A /* GoogleService-Info.plist in Resources */,
 				1A135AC51E5BEEEF00655294 /* ic_google.png in Resources */,
 				1A135A731E5BECEE00655294 /* LaunchScreen.storyboard in Resources */,
+				CA742D771E62AE2700E15A7A /* spinner.png in Resources */,
 				1A135A701E5BECEE00655294 /* Assets.xcassets in Resources */,
 				1A135AC41E5BEEEF00655294 /* ic_facebook.png in Resources */,
 				1A135ABA1E5BEEEF00655294 /* app_icon_120.png in Resources */,
@@ -415,7 +469,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		AB84AE92C62B1A8CC58540E1 /* [CP] Embed Pods Frameworks */ = {
@@ -456,8 +510,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A135AC21E5BEEEF00655294 /* TabViewController.swift in Sources */,
+				CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */,
 				1A74EC121E5FDB46000F0088 /* DetailMessageViewController.swift in Sources */,
 				1A135ABD1E5BEEEF00655294 /* LoginViewController.swift in Sources */,
+				CA66BF601E647383009F1607 /* LocationManager.swift in Sources */,
 				1A74EC971E5FEBB2000F0088 /* InputAccessoryView.swift in Sources */,
 				1A135AC11E5BEEEF00655294 /* SignUpViewController.swift in Sources */,
 				1A135A691E5BECEE00655294 /* AppDelegate.swift in Sources */,
@@ -621,12 +677,13 @@
 			baseConfigurationReference = C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
+				DEVELOPMENT_TEAM = GJE9S37JFS;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dream.upplus.Up-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/tuannm/Desktop/Up/Up+/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -637,12 +694,13 @@
 			baseConfigurationReference = 52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
+				DEVELOPMENT_TEAM = GJE9S37JFS;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dream.upplus.Up-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/tuannm/Desktop/Up/Up+/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

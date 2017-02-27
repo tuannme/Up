@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpViewController: UIViewController {
 
@@ -17,7 +18,30 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var policyLb: UILabel!
     
     @IBAction func signUpAction(_ sender: Any) {
+     
+        let email = emailTf.text
+        let password = passwordTf.text
         
+        if((email?.isValidEmail())! && (password?.characters.count)! >= 6){
+            
+            let repassword = repasswordTf.text
+            if(password == repassword){
+                
+                FIRAuth.auth()?.createUser(withEmail: email!, password: password!) {
+                    (user, error) in
+                    
+                }
+                
+            }else{
+                let alert = UIAlertView(title: "", message: "password not match", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        }else{
+            let alert = UIAlertView(title: "", message: "email or password is not correct ", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+        }
+   
     }
     
     @IBAction func closeAction(_ sender: Any) {

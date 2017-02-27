@@ -8,28 +8,34 @@
 
 import UIKit
 
-class DetailMessageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+
+class DetailMessageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate {
     
-    
+    @IBOutlet weak var inputViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var keyboardSpaceBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var inputTv: UITextView!
     
     let INPUT_VIEW_MAX_HEIGHT:CGFloat = 70
     let BOTTOM_MARGIN:CGFloat = 30
+    let INPUT_SIZE_MIN:CGFloat = 40
+    
     var accessoryView:InputAccessoryView?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
-        
+
         accessoryView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height:self.INPUT_VIEW_MAX_HEIGHT))
         accessoryView?.isUserInteractionEnabled = false
         self.inputTv.inputAccessoryView = accessoryView
         self.inputTv.isUserInteractionEnabled = true
+        self.inputTv.delegate = self;
+        //self.inputTv.placeH
         
         tbView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.interactive
         
@@ -39,26 +45,52 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
         }
         
     }
+
+    func textViewDidChange(_ textView: UITextView) {
+
+        let message = textView.text
+        let font = UIFont (name: "Helvetica Neue", size: 17)
+        let minSize = "A".heightWithConstrainedWidth(width: textView.frame.width, font: font!)
+        let height = message?.heightWithConstrainedWidth(width: textView.frame.width, font: font!)
+        
+        let numberLine = Int(height!/minSize)
+    
+        if(numberLine >= 4){
+            self.inputTv.isScrollEnabled = true
+        }else{
+            self.inputViewHeightConstraint.constant = INPUT_SIZE_MIN + 22.5*CGFloat((numberLine-1))
+            self.inputTv.isScrollEnabled = false
+        }
+    }
+    
     
     func keyboardWillShow(notification:NSNotification){
         
         let animationCurve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
         let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! CGFloat
         
-        let keyboardFrame =  notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        let keyboardFrame =  notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! CGRect
   
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
             
-            self.keyboardSpaceBottomConstraint.constant = keyboardFrame.size.height + self.BOTTOM_MARGIN
-            print(keyboardFrame.size.height)
-          
+            self.keyboardSpaceBottomConstraint.constant = keyboardFrame.size.height - self.inputViewHeightConstraint.constant
+            self.view.layoutIfNeeded()
             
         }, completion: nil)
         
+
     }
     
     func keyboardWillHide(notification:NSNotification){
+        let animationCurve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
+        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! CGFloat
         
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
+            
+            self.keyboardSpaceBottomConstraint.constant = self.BOTTOM_MARGIN
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
     }
     
     
@@ -84,3 +116,14 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
 }
+
+extension String {
+    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        
+        return boundingBox.height
+    }
+}
+
+
