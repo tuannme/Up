@@ -31,6 +31,7 @@
 		1A74EC121E5FDB46000F0088 /* DetailMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC111E5FDB46000F0088 /* DetailMessageViewController.swift */; };
 		1A74EC971E5FEBB2000F0088 /* InputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC961E5FEBB2000F0088 /* InputAccessoryView.swift */; };
 		1A74EC991E6009FF000F0088 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */; };
+		1A7F106F1E6528D800BF7D5E /* FIRDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F106E1E6528D800BF7D5E /* FIRDatabaseManager.swift */; };
 		64945DAE4A9B3FAACBF8BAC7 /* Pods_Up_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A574B742D5EA8C7E4B1B644C /* Pods_Up_.framework */; };
 		CA66BF601E647383009F1607 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66BF5F1E647383009F1607 /* LocationManager.swift */; };
 		CA742D6E1E61DB1E00E15A7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */; };
@@ -86,6 +87,7 @@
 		1A74EC111E5FDB46000F0088 /* DetailMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMessageViewController.swift; sourceTree = "<group>"; };
 		1A74EC961E5FEBB2000F0088 /* InputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
 		1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		1A7F106E1E6528D800BF7D5E /* FIRDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRDatabaseManager.swift; sourceTree = "<group>"; };
 		52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.release.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.release.xcconfig"; sourceTree = "<group>"; };
 		A574B742D5EA8C7E4B1B644C /* Pods_Up_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Up_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				CA66BF5F1E647383009F1607 /* LocationManager.swift */,
+				1A7F106E1E6528D800BF7D5E /* FIRDatabaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,9 +387,14 @@
 				TargetAttributes = {
 					1A135A641E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GJE9S37JFS;
+						DevelopmentTeam = 9ZZR5T4Q5D;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					1A135A781E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -469,7 +477,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		AB84AE92C62B1A8CC58540E1 /* [CP] Embed Pods Frameworks */ = {
@@ -518,6 +526,7 @@
 				1A135AC11E5BEEEF00655294 /* SignUpViewController.swift in Sources */,
 				1A135A691E5BECEE00655294 /* AppDelegate.swift in Sources */,
 				1A135ABC1E5BEEEF00655294 /* ContactViewController.swift in Sources */,
+				1A7F106F1E6528D800BF7D5E /* FIRDatabaseManager.swift in Sources */,
 				1A135AC81E5BEEEF00655294 /* MessageTbViewCell.swift in Sources */,
 				1A135AC71E5BEEEF00655294 /* JumpDownSegue.swift in Sources */,
 				1A135AC31E5BEEEF00655294 /* TimelineViewController.swift in Sources */,
@@ -677,13 +686,13 @@
 			baseConfigurationReference = C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dream.upplus.Up-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/tuannm/Desktop/Up/Up+/Up+/Up-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -694,13 +703,13 @@
 			baseConfigurationReference = 52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dream.upplus.Up-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/tuannm/Desktop/Up/Up+/Up+/Up-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
