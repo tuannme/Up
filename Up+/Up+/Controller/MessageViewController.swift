@@ -159,6 +159,23 @@ class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         let manager = FIRUserManager()
+        
+        let newUser = User()
+        newUser.username = String(format: "my name is %d",indexPath.row)
+        newUser.userId = "1234"
+        
+        manager.createUser(user:newUser)
+        
+        newUser.lat = "23.3434"
+        newUser.lgn = "103.3434"
+        
+        manager.updateUser(user: newUser)
+        
+    }
+    
     func rotated(){
         drawBoundSearchView()
     }

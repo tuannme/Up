@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         LocationManager.sharedInstance.startLoadLocation()
         
-        LocationManager.sharedInstance.startLoadLocation()
-        
         return true
     }
     

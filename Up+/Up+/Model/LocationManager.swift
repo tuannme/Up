@@ -11,7 +11,7 @@ import CoreLocation
 
 class LocationManager: NSObject,CLLocationManagerDelegate {
 
-    //private let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
     static let sharedInstance:LocationManager = {
         let manager = LocationManager()
@@ -20,7 +20,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }()
     
     private func setup(){
-        let locationManager = CLLocationManager()
+        //let locationManager = CLLocationManager()
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -29,7 +29,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     func startLoadLocation(){
-        //locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
