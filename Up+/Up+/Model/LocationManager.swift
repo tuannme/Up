@@ -11,68 +11,51 @@ import CoreLocation
 
 class LocationManager: NSObject,CLLocationManagerDelegate {
 
-    private let locationManager = CLLocationManager()
+    var locationManager:CLLocationManager!
     
-    static let sharedInstance:LocationManager = {
-        let manager = LocationManager()
-        manager.setup()
-        return manager
+    static let shareInstace:LocationManager = {
+        let instance = LocationManager()
+        instance.locationManager = CLLocationManager()
+        
+        instance.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        instance.locationManager.requestAlwaysAuthorization()
+        return instance
     }()
     
-    private func setup(){
-        //let locationManager = CLLocationManager()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
+
     func startLoadLocation(){
-        locationManager.startUpdatingLocation()
-    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let userLocation:CLLocation = locations[0] as! CLLocation
-        let long = userLocation.coordinate.longitude;
-        let lat = userLocation.coordinate.latitude;
         
-        print("my posision",lat,"and",long)
-        //locationManager.stopUpdatingLocation()
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //locationManager.stopUpdatingLocation()
-        print(error)
-    }
-    
-    private func locationManager(manager: CLLocationManager!,
-                         didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        var shouldIAllow = false
-        
-        var locationStatus = ""
-        
-        switch status {
-        case CLAuthorizationStatus.restricted:
-            locationStatus = "Restricted Access to location"
-        case CLAuthorizationStatus.denied:
-            locationStatus = "User denied access to location"
-        case CLAuthorizationStatus.notDetermined:
-            locationStatus = "Status not determined"
-        default:
-            locationStatus = "Allowed to location Access"
-            shouldIAllow = true
+        locationManager.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
         }
-       
-        if (shouldIAllow == true) {
-            NSLog("Location to Allowed")
-            // Start location services
-            //locationManager.startUpdatingLocation()
-        } else {
-            NSLog("Denied access: \(locationStatus)")
-        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        locationManager.stopUpdatingLocation()
+        
+        let user = User()
+        user.lat = String(userLocation.coordinate.latitude)
+        user.lgn = String(userLocation.coordinate.longitude)
+        user.userId = UserDefaults.standard.object(forKey: USER_ID) as! String!
+        user.username = UserDefaults.standard.object(forKey: USER_NAME) as! String!
+        user.photoURL = UserDefaults.standard.object(forKey: USER_PHOTO_URL) as! String!
+        
+        
+        let firManager = FIRUserManager()
+        firManager.updateUser(user: user)
+        
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.longitude)")
     }
 
-    
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+        print(error)
+    }
+ 
 }

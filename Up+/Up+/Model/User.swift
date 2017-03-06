@@ -14,4 +14,5 @@ class User: NSObject {
     var userId:String!
     var lat:String?
     var lgn:String?
+    var photoURL:String?
 }

@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
     
     @IBOutlet weak var spaceToTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchTraillingConstraint: NSLayoutConstraint!
-
+    
     @IBOutlet weak var userLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var cancelTraillingConstraint: NSLayoutConstraint!
     
@@ -28,12 +29,13 @@ class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
-      
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-
+        
         cancelTraillingConstraint.constant = -70
         
         searchContainerView.layer.masksToBounds = true
@@ -47,14 +49,13 @@ class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         searchTf.delegate = self;
         searchTf.placeholder = "Search"
         searchTf.textAlignment = NSTextAlignment.center
-        
-//        userBt.layer.cornerRadius = 25
-//        userBt.clipsToBounds = true
-//        userBt.layer.borderColor = UIColor.black.cgColor
-//        userBt.layer.borderWidth = 1.0
-        
-        
     }
+    
+    func rotated(){
+        drawBoundSearchView()
+    }
+
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -69,7 +70,7 @@ class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         searchContainerView.layer.mask = maskLayer
     }
     
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -161,23 +162,9 @@ class MessageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let manager = FIRUserManager()
-        
-        let newUser = User()
-        newUser.username = String(format: "my name is %d",indexPath.row)
-        newUser.userId = "1234"
-        
-        manager.createUser(user:newUser)
-        
-        newUser.lat = "23.3434"
-        newUser.lgn = "103.3434"
-        
-        manager.updateUser(user: newUser)
+        tbView.deselectRow(at: indexPath, animated: true)
         
     }
     
-    func rotated(){
-        drawBoundSearchView()
-    }
-
+    
 }

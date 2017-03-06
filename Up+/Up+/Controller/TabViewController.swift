@@ -94,7 +94,7 @@ class TabViewController: UIViewController {
     
     
     func landscapeAction(){
-        print("Landscape")
+        //print("Landscape")
         landscape = true
         messageTabLeadingConstraint.constant = -CGFloat(currentTab)*frameH
         
@@ -105,7 +105,7 @@ class TabViewController: UIViewController {
     }
     
     func portraitAction(){
-        print("Portrait")
+        //print("Portrait")
         landscape = false
         messageTabLeadingConstraint.constant = -CGFloat(currentTab)*frameW
 

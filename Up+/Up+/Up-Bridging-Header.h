@@ -11,5 +11,6 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import "Configuration.h"
+#import "DefineString.h"
 
 #endif /* Up_Bridging_Header_h */
