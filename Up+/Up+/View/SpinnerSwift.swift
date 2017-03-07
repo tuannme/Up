@@ -11,14 +11,19 @@ import UIKit
 class SpinnerSwift{
     
     private let spinner:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    private let blueView = UIView(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    
     var isPlaying = false
     static let sharedInstance:SpinnerSwift = {
         let instance = SpinnerSwift()
         instance.setSpinner()
+        instance.blueView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        instance.blueView.addSubview(instance.spinner)
         return instance
     }()
     
     private func setSpinner() {
+        
         let imageView = UIImageView(frame: spinner.frame)
         imageView.image = UIImage(named: "spinner.png")
         self.spinner.addSubview(imageView)
@@ -29,7 +34,7 @@ class SpinnerSwift{
 
         if(!isPlaying){
             self.playSpinner(delay: 0)
-            UIApplication.shared.keyWindow?.addSubview(spinner)
+            UIApplication.shared.keyWindow?.addSubview(blueView)
         }
 
         isPlaying = true
@@ -49,7 +54,7 @@ class SpinnerSwift{
     
     func  stopAnimating(){
         isPlaying = false
-        spinner.removeFromSuperview()
+        blueView.removeFromSuperview()
     }
     
 

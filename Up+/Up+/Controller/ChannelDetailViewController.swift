@@ -11,18 +11,31 @@ import SendBirdSDK
 
 
 class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate{
-
-    @IBOutlet weak var inputViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tbView: UITableView!
-    @IBOutlet weak var keyboardSpaceBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var inputTv: UITextView!
     
     var channelURL:String!
     var openChannel:SBDOpenChannel?
     
-    let INPUT_VIEW_MAX_HEIGHT:CGFloat = 100
+    @IBOutlet weak var inputViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tbView: UITableView!
+    
+    
+    @IBOutlet weak var listenView: UIView!
+    
+    @IBOutlet weak var messageLb: UILabel!
+    
+    
+    @IBOutlet weak var keyboardSpaceBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var inputTv: UITextView!
+    
+    @IBOutlet weak var typingMsgView: UIView!
+    @IBOutlet weak var typingLeadingSpaceContraint: NSLayoutConstraint!
+    @IBOutlet weak var mediaMsgLeadingSpaceConstraint: NSLayoutConstraint!
+    
+    
+    let INPUT_VIEW_MAX_HEIGHT:CGFloat = 70
     let BOTTOM_MARGIN:CGFloat = 0
-    let INPUT_SIZE_MIN:CGFloat = 70
+    let INPUT_SIZE_MIN:CGFloat = 40
+    let LINE_HEIGHT:CGFloat = 22.5
     
     var accessoryView:InputAccessoryView?
     
@@ -47,13 +60,23 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
         self.inputTv.isUserInteractionEnabled = true
         self.inputTv.delegate = self;
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.touchOnInputView))
+        self.listenView.isUserInteractionEnabled = true
+        self.listenView.addGestureRecognizer(gesture)
+        
+        typingMsgView.layer.cornerRadius = 10
+        typingMsgView.clipsToBounds = true
+        typingMsgView.layer.borderColor = UIColor.lightGray.cgColor
+        typingMsgView.layer.borderWidth = 1
+        
+        
         tbView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.interactive
         
-        accessoryView?.inputAcessoryViewFrameChangedBlock = { (inputAccessoryViewFrame) -> Void in
+        accessoryView?.inputAcessoryViewFrameChangedBlock = {
+            (inputAccessoryViewFrame) -> Void in
             let value = self.view.frame.height - inputAccessoryViewFrame.minY - (self.inputTv.inputAccessoryView?.frame.height)! + self.BOTTOM_MARGIN
             self.keyboardSpaceBottomConstraint.constant = max(self.BOTTOM_MARGIN, value);
         }
-        
         
         SBDOpenChannel.getWithUrl(channelURL) { (channel, error) in
             if error != nil {
@@ -72,9 +95,55 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
             })
         }
         
+        
+    }
+    
+    func touchOnInputView(){
+        
+        if(keyboardSpaceBottomConstraint.constant == 0 && listenView.isHidden == false){
+            self.inputTv.becomeFirstResponder()
+        }
+        
+        self.listenView.isHidden = true
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.typingLeadingSpaceContraint.constant = 60
+            self.mediaMsgLeadingSpaceConstraint.constant = -150
+            self.view.layoutIfNeeded()
+            
+        }, completion: {
+            (finish:Bool) in
+            
+        })
+    }
+    
+    @IBAction func showMediaMessageAction(_ sender: Any) {
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.typingLeadingSpaceContraint.constant = 150
+            self.mediaMsgLeadingSpaceConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            
+        }, completion: {
+            (finish:Bool) in
+            
+        })
+        
+        self.listenView.isHidden = false
+        
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        
+        if(self.mediaMsgLeadingSpaceConstraint.constant == 0){
+            self.listenView.isHidden = true
+            UIView .animate(withDuration: 0.2, animations: {
+                self.typingLeadingSpaceContraint.constant = 60
+                self.mediaMsgLeadingSpaceConstraint.constant = -150
+                self.view.layoutIfNeeded()
+            })
+            
+        }
         
         let message = textView.text
         let font = UIFont (name: "Helvetica Neue", size: 17)
@@ -83,10 +152,10 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
         
         let numberLine = Int(height!/minSize)
         
-        if(numberLine >= 4){
+        if(numberLine >= 5){
             self.inputTv.isScrollEnabled = true
         }else{
-            self.inputViewHeightConstraint.constant = INPUT_SIZE_MIN + 22.5*CGFloat((numberLine-1))
+            self.inputViewHeightConstraint.constant = INPUT_SIZE_MIN + LINE_HEIGHT*CGFloat((numberLine-1))
             self.inputTv.isScrollEnabled = false
         }
     }
@@ -102,7 +171,6 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
             
             self.keyboardSpaceBottomConstraint.constant = keyboardFrame.size.height - self.INPUT_VIEW_MAX_HEIGHT
-                //self.inputViewHeightConstraint.constant
             self.view.layoutIfNeeded()
             
         }, completion: nil)
@@ -113,6 +181,16 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
     func keyboardWillHide(notification:NSNotification){
         let animationCurve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
         let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! CGFloat
+        
+        if(self.inputTv.text.characters.count == 0){
+            self.listenView.isHidden = false
+            UIView .animate(withDuration: 0.2, animations: {
+                self.typingLeadingSpaceContraint.constant = 150
+                self.mediaMsgLeadingSpaceConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            })
+            
+        }
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
             
@@ -125,20 +203,6 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
     
     
     @IBAction func backAction(_ sender: Any) {
-        SBDOpenChannel.getWithUrl(channelURL) { (channel, error) in
-            if error != nil {
-                NSLog("Error: %@", error!)
-                return
-            }
-            
-            channel?.exitChannel(completionHandler: { (error) in
-                if error != nil {
-                    NSLog("Error: %@", error!)
-                    return
-                }
-                
-            })
-        }
         self.navigationController!.popViewController(animated: true)
     }
     

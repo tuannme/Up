@@ -215,13 +215,13 @@
 		1A135AA91E5BEEEF00655294 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA76364C1E6F188B004308B1 /* TimelineController */,
+				CA76364B1E6F187D004308B1 /* ContactController */,
 				1A7CB3A51E6D3A1B001494A6 /* MoreController */,
 				CA742D6F1E61DDDA00E15A7A /* LoginController */,
 				1A135ACA1E5C2AF400655294 /* MessageController */,
-				1A135AAA1E5BEEEF00655294 /* ContactViewController.swift */,
 				1A135AAC1E5BEEEF00655294 /* MainViewController.swift */,
 				1A135AB01E5BEEEF00655294 /* TabViewController.swift */,
-				1A135AB11E5BEEEF00655294 /* TimelineViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -389,6 +389,22 @@
 			name = Spinner;
 			sourceTree = "<group>";
 		};
+		CA76364B1E6F187D004308B1 /* ContactController */ = {
+			isa = PBXGroup;
+			children = (
+				1A135AAA1E5BEEEF00655294 /* ContactViewController.swift */,
+			);
+			name = ContactController;
+			sourceTree = "<group>";
+		};
+		CA76364C1E6F188B004308B1 /* TimelineController */ = {
+			isa = PBXGroup;
+			children = (
+				1A135AB11E5BEEEF00655294 /* TimelineViewController.swift */,
+			);
+			name = TimelineController;
+			sourceTree = "<group>";
+		};
 		F823F9B8A62C18261A2F6581 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,7 +484,7 @@
 				TargetAttributes = {
 					1A135A641E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9ZZR5T4Q5D;
+						DevelopmentTeam = GJE9S37JFS;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -786,11 +802,11 @@
 			baseConfigurationReference = C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
+				DEVELOPMENT_TEAM = GJE9S37JFS;
 				INFOPLIST_FILE = "Up+/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Upuuu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -803,11 +819,11 @@
 			baseConfigurationReference = 52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
+				DEVELOPMENT_TEAM = GJE9S37JFS;
 				INFOPLIST_FILE = "Up+/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Upuuu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

@@ -13,9 +13,9 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
     
     @IBOutlet weak var inputViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tbView: UITableView!
-    
-    
     @IBOutlet weak var listenView: UIView!
+    @IBOutlet weak var messageLb: UILabel!
+    
     
     @IBOutlet weak var keyboardSpaceBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var inputTv: UITextView!
@@ -24,7 +24,7 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
     @IBOutlet weak var typingLeadingSpaceContraint: NSLayoutConstraint!
     @IBOutlet weak var mediaMsgLeadingSpaceConstraint: NSLayoutConstraint!
     
-
+    
     let INPUT_VIEW_MAX_HEIGHT:CGFloat = 70
     let BOTTOM_MARGIN:CGFloat = 0
     let INPUT_SIZE_MIN:CGFloat = 40
@@ -90,9 +90,20 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
             (finish:Bool) in
             
         })
+        
+        autoResizeTypingTextView(tv: inputTv)
+        
     }
     
     @IBAction func showMediaMessageAction(_ sender: Any) {
+        
+        self.inputViewHeightConstraint.constant = INPUT_SIZE_MIN
+        let message = inputTv.text
+        if(message?.characters.count == 0){
+            messageLb.text = "Say something ..."
+        }else{
+            messageLb.text = message
+        }
         
         UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.typingLeadingSpaceContraint.constant = 150
@@ -105,9 +116,9 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
         })
         
         self.listenView.isHidden = false
-
+        
     }
-
+    
     func textViewDidChange(_ textView: UITextView) {
         
         if(self.mediaMsgLeadingSpaceConstraint.constant == 0){
@@ -117,13 +128,17 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
                 self.mediaMsgLeadingSpaceConstraint.constant = -150
                 self.view.layoutIfNeeded()
             })
-
+            
         }
+        autoResizeTypingTextView(tv: textView)
+    }
+    
+    func autoResizeTypingTextView(tv:UITextView) {
         
-        let message = textView.text
+        let message = tv.text
         let font = UIFont (name: "Helvetica Neue", size: 17)
-        let minSize = "A".heightWithConstrainedWidth(width: textView.frame.width, font: font!)
-        let height = message?.heightWithConstrainedWidth(width: textView.frame.width, font: font!)
+        let minSize = "A".heightWithConstrainedWidth(width: tv.frame.width, font: font!)
+        let height = message?.heightWithConstrainedWidth(width: tv.frame.width, font: font!)
         
         let numberLine = Int(height!/minSize)
         
@@ -134,7 +149,6 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
             self.inputTv.isScrollEnabled = false
         }
     }
-    
     
     func keyboardWillShow(notification:NSNotification){
         
@@ -164,7 +178,7 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
                 self.mediaMsgLeadingSpaceConstraint.constant = 0
                 self.view.layoutIfNeeded()
             })
-
+            
         }
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
