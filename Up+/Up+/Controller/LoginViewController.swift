@@ -49,7 +49,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,GIDSignInUIDeleg
     }
     
     @IBAction func googleSignInAction(_ sender: Any) {
-        SpinnerSwift.sharedInstance.startAnimating()
+        
         GIDSignIn.sharedInstance().signIn()
     }
     
@@ -62,10 +62,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate,GIDSignInUIDeleg
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         
         if let error = error {
-            SpinnerSwift.sharedInstance.stopAnimating()
             print(error)
             return
         }
+        
+        SpinnerSwift.sharedInstance.startAnimating()
         
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
@@ -96,6 +97,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate,GIDSignInUIDeleg
         if(photo != nil){
             UserDefaults.standard.set(photo?.absoluteString, forKey: USER_PHOTO_URL)
         }
+        
+        let user = User()
+        user.userId = userId
+        user.username = username
+        let manager = FIRUserManager()
+        manager .createUser(user: user)
         
         SBDMain.connect(withUserId: userId, completionHandler: {
             (user, error) in

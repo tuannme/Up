@@ -20,11 +20,18 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
     var channelURL:String!
     var openChannel:SBDOpenChannel?
     
-    let INPUT_VIEW_MAX_HEIGHT:CGFloat = 70
-    let BOTTOM_MARGIN:CGFloat = 30
-    let INPUT_SIZE_MIN:CGFloat = 40
+    let INPUT_VIEW_MAX_HEIGHT:CGFloat = 100
+    let BOTTOM_MARGIN:CGFloat = 0
+    let INPUT_SIZE_MIN:CGFloat = 70
     
     var accessoryView:InputAccessoryView?
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
+    }
     
     override func viewDidLoad() {
         
@@ -39,7 +46,6 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
         self.inputTv.inputAccessoryView = accessoryView
         self.inputTv.isUserInteractionEnabled = true
         self.inputTv.delegate = self;
-        //self.inputTv.placeH
         
         tbView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.interactive
         
@@ -95,7 +101,8 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
             
-            self.keyboardSpaceBottomConstraint.constant = keyboardFrame.size.height - self.inputViewHeightConstraint.constant
+            self.keyboardSpaceBottomConstraint.constant = keyboardFrame.size.height - self.INPUT_VIEW_MAX_HEIGHT
+                //self.inputViewHeightConstraint.constant
             self.view.layoutIfNeeded()
             
         }, completion: nil)
