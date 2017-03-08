@@ -64,6 +64,8 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
         
         
         tbView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.interactive
+        tbView.rowHeight = UITableViewAutomaticDimension
+        tbView.estimatedRowHeight = 40
         
         accessoryView?.inputAcessoryViewFrameChangedBlock = {
             (inputAccessoryViewFrame) -> Void in
@@ -202,7 +204,7 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0;
+        return 2;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
