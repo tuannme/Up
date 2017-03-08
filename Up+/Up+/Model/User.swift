@@ -15,4 +15,7 @@ class User: NSObject {
     var lat:String?
     var lgn:String?
     var photoURL:String?
+    var updateAt:String?
+    
+    var distance:String?
 }

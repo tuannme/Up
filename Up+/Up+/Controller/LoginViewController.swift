@@ -37,8 +37,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate,GIDSignInUIDeleg
             FIRAuth.auth()?.signIn(withEmail: username!, password: password!) {
                 (user, error) in
                 if(error != nil){
-                    let alert = UIAlertView.init(title: "", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
-                    alert.show()
+                    
+                    let alertVC = UIAlertController(title: "", message: error?.localizedDescription, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                        action -> Void in
+                        
+                    }))
+                    self .present(alertVC, animated: true, completion: nil)
+                
                 }
                 self.loginSuccess(username: user!.displayName!, userId: user!.uid,photo: user?.photoURL)
             }

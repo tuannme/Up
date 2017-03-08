@@ -47,6 +47,7 @@
 		1A7CB3DD1E6E93DF001494A6 /* ic_media.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CB3D81E6E93DF001494A6 /* ic_media.png */; };
 		1A7CB3DE1E6E93DF001494A6 /* ic_send_msg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CB3D91E6E93DF001494A6 /* ic_send_msg.png */; };
 		1A7CB3DF1E6E93E0001494A6 /* ic_show_media.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CB3DA1E6E93DF001494A6 /* ic_show_media.png */; };
+		1A7CB3E11E6FAD20001494A6 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CB3E01E6FAD20001494A6 /* ImageCache.swift */; };
 		1A9DF41A1E6907CA0046310B /* FIRUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DF4191E6907CA0046310B /* FIRUserManager.swift */; };
 		1A9DF41C1E690D2D0046310B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DF41B1E690D2D0046310B /* User.swift */; };
 		64945DAE4A9B3FAACBF8BAC7 /* Pods_Up_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A574B742D5EA8C7E4B1B644C /* Pods_Up_.framework */; };
@@ -120,6 +121,7 @@
 		1A7CB3D81E6E93DF001494A6 /* ic_media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_media.png; sourceTree = "<group>"; };
 		1A7CB3D91E6E93DF001494A6 /* ic_send_msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_send_msg.png; sourceTree = "<group>"; };
 		1A7CB3DA1E6E93DF001494A6 /* ic_show_media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_show_media.png; sourceTree = "<group>"; };
+		1A7CB3E01E6FAD20001494A6 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1A9DF4191E6907CA0046310B /* FIRUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRUserManager.swift; sourceTree = "<group>"; };
 		1A9DF41B1E690D2D0046310B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Up+.release.xcconfig"; path = "Pods/Target Support Files/Pods-Up+/Pods-Up+.release.xcconfig"; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				CA66BF5F1E647383009F1607 /* LocationManager.swift */,
 				1A9DF4191E6907CA0046310B /* FIRUserManager.swift */,
 				1A9DF41B1E690D2D0046310B /* User.swift */,
+				1A7CB3E01E6FAD20001494A6 /* ImageCache.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -484,7 +487,7 @@
 				TargetAttributes = {
 					1A135A641E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GJE9S37JFS;
+						DevelopmentTeam = 9ZZR5T4Q5D;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -629,6 +632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7CB3E11E6FAD20001494A6 /* ImageCache.swift in Sources */,
 				1A135AC21E5BEEEF00655294 /* TabViewController.swift in Sources */,
 				CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */,
 				1A74EC121E5FDB46000F0088 /* DetailMessageViewController.swift in Sources */,
@@ -802,11 +806,11 @@
 			baseConfigurationReference = C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Upuuu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -819,11 +823,11 @@
 			baseConfigurationReference = 52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = 9ZZR5T4Q5D;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Upuuu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

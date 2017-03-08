@@ -12,5 +12,7 @@
 #define USER_NAME @"USER_NAME"
 #define USER_ID @"USER_ID"
 #define USER_PHOTO_URL @"USER_PHOTO_URL"
+#define USER_LATITUDE @"USER_LATITUDE"
+#define USER_LONGTITUDE @"USER_LONGTITUDE"
 
 #endif /* DefineString_h */

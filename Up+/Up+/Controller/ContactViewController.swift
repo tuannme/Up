@@ -121,36 +121,43 @@ class ContactViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     self.retrieveContactsWithStore(store: store)
                 }
             })
- 
+            
         }else if (CNContactStore.authorizationStatus(for: .contacts) == .authorized) {
             self.retrieveContactsWithStore(store: store)
         }
         
-       
+        
     }
     
     func retrieveContactsWithStore(store: CNContactStore) {
         do {
-           
-            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
-            let containers = try store.containers(matching: nil)
+            
+            
+            let keysToFetch = [
+                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+                CNContactEmailAddressesKey as CNKeyDescriptor,
+                CNContactPhoneNumbersKey as CNKeyDescriptor,
+                CNContactImageDataAvailableKey as CNKeyDescriptor,
+                CNContactThumbnailImageDataKey as CNKeyDescriptor]
         
+            let containers = try store.containers(matching: nil)
+            
             for container in containers{
                 let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
                 do{
                     let containerResults = try store.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch)
                     arrContacts.append(contentsOf: containerResults)
+ 
                 }catch{
                     
                 }
             }
             
-            
             DispatchQueue.main.async(execute: {
                 self.tbView.reloadData()
             })
             
-        } catch {
+        } catch let error{
             print(error)
         }
     }
@@ -171,17 +178,31 @@ class ContactViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let contact = arrContacts[indexPath.row]
-        
+        let formatter = CNContactFormatter()
+       
+
         let cell = tbView.dequeueReusableCell(withIdentifier: "Cell")
         let nameLb = cell?.contentView.viewWithTag(222) as! UILabel
-        nameLb.text = contact.givenName        
+        nameLb.text = formatter.string(from: contact)
         return cell!
         
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tbView.deselectRow(at: indexPath, animated: true)
+        
+        let contact = arrContacts[indexPath.row]
+        let labelValue = contact.phoneNumbers.first
+        let phoneNumber = labelValue?.value
+        
+        let phoneStr = phoneNumber?.value(forKey: "digits") as? String
+        print(phoneStr!)
+        
+
+//        let alertVC = UIAlertController(title: "", message: phoneStr, preferredStyle: .alert)
+//        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alertVC, animated: true, completion: nil)
+        
     }
     
     

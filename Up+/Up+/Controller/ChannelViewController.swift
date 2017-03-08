@@ -59,8 +59,19 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
         name.text = channel.name
         
         let avatar = cell!.contentView.viewWithTag(222) as! UIImageView
-        let url = URL(string: channel.coverUrl!)
-        avatar.setImageWith(url!, placeholderImage: nil)
+        
+        ImageCache.shareInstance.getImageURL(url: channel.coverUrl!, completion: {
+            image ->  Void in
+            
+            DispatchQueue.main.async(execute: {
+                avatar.image = image
+            })
+
+            
+        })
+        
+//        let url = URL(string: channel.coverUrl!)
+//        avatar.setImageWith(url!, placeholderImage: nil)
         avatar.layer.cornerRadius = avatar.frame.width/2
         avatar.clipsToBounds = true
         

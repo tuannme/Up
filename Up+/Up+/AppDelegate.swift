@@ -22,9 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         SBDMain.initWithApplicationId(SENDBIRD_ID)
-        
-        
-        
+
         return true
     }
     

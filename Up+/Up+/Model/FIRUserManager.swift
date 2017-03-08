@@ -32,7 +32,8 @@ class FIRUserManager: NSObject {
         let newData = [
             "lat": user.lat,
             "lgn":user.lgn,
-            "photoURL":user.photoURL
+            "photoURL":user.photoURL,
+            "updateAt":user.updateAt
         ]
         
         userRef.updateChildValues(newData)
