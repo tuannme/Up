@@ -113,11 +113,17 @@ class LoginViewController: UIViewController,UITextFieldDelegate,GIDSignInUIDeleg
         SBDMain.connect(withUserId: userId, completionHandler: {
             (user, error) in
             
-            SBDMain.updateCurrentUserInfo(withNickname: username , profileImage: nil, completionHandler: {
-                (error) in
-                // ...
-            })
-  
+            do{
+                let data = try Data.init(contentsOf: photo!)
+                SBDMain.updateCurrentUserInfo(withNickname: username , profileImage: data, completionHandler: {
+                    (error) in
+                    // ...
+                })
+            
+            }catch let error{
+                print(error)
+            }
+
         })
         self.isAuthendicate = true
         LocationManager.shareInstace.startLoadLocation()

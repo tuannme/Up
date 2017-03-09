@@ -83,6 +83,16 @@ class MessageViewController:
  
     }
     
+    //channel delegate
+    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
+
+        DispatchQueue.main.async(execute: {
+            self.tbView.reloadData()
+        })
+    }
+
+    
+    
     
     func loadChannelList()  {
         let query = SBDGroupChannel.createMyGroupChannelListQuery()!
@@ -155,7 +165,6 @@ class MessageViewController:
     }
     
     // Scroll delegate
-    
     var oldContentOffset = CGPoint(x: 0, y: 0)
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -203,46 +212,62 @@ class MessageViewController:
         
         if let index = index{
             let channel = channelList[index.row]
-            let user = channel.members?.lastObject
             
-            if let user = user {
-                
-                let userId = (user as! SBDUser).userId
-                let messageVC = segue.destination as! DetailMessageViewController
-                messageVC.memberId = userId
-                
+            let myId = UserDefaults.standard.object(forKey: USER_ID) as! String
+            var user = channel.members?.lastObject!
+
+            var memberId = (user as! SBDUser).userId
+            if(memberId == myId){
+                user = channel.members?.firstObject!
+                memberId = (user as! SBDUser).userId
             }
+            
+            let userId = (user as! SBDUser).userId
+            let messageVC = segue.destination as! DetailMessageViewController
+            messageVC.memberId = userId
+            
         }
     }
     
-    
     // tableview delegate
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return channelList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tbView.dequeueReusableCell(withIdentifier: "MessageTbViewCell") as! MessageTbViewCell
-        cell.avatar.image =  UIImage(named: "ic_google.png")
-        
         let groupChannel = channelList[indexPath.row]
         let lastMessage = groupChannel.lastMessage
+        let myId = UserDefaults.standard.object(forKey: USER_ID) as! String
+        var user = groupChannel.members?.lastObject as! SBDUser
+        if(user.userId == myId){
+            user = groupChannel.members?.firstObject as! SBDUser
+        }
         
+        let cell = tbView.dequeueReusableCell(withIdentifier: "MessageTbViewCell") as! MessageTbViewCell
+        
+         if let avatarLink = user.profileUrl{
+            ImageCache.shareInstance.getImageURL(url: avatarLink, completion: {
+                image -> Void in
+                
+                DispatchQueue.main.async(execute: {
+                    cell.avatar.layer.cornerRadius = 20
+                    cell.avatar.clipsToBounds = true
+                    cell.avatar.image = image
+                })
+            })
+        }
+                
         let mesgOwn = cell.contentView.viewWithTag(222) as! UILabel
-        let user = groupChannel.members?.lastObject as! SBDUser
         mesgOwn.text = user.nickname
         
         if let lastMessage = lastMessage{
             let mesgContent = cell.contentView.viewWithTag(333) as! UILabel
             mesgContent.text = (lastMessage as! SBDUserMessage).message
         }
-        
-       
+
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tbView.deselectRow(at: indexPath, animated: true)

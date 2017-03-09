@@ -14,6 +14,8 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
     var arrMessage:[SBDBaseMessage] = []
     var memberId:String!
     var groupChannel:SBDGroupChannel?
+    let myId = UserDefaults.standard.object(forKey: USER_ID) as! String
+    
     
     @IBOutlet weak var inputViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tbView: UITableView!
@@ -275,16 +277,28 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let message = arrMessage[indexPath.row]
-        let cell = tbView.dequeueReusableCell(withIdentifier: "MsgOutGoingCell") as! MsgOutGoingCell
         
-        //let cell = tbView.dequeueReusableCell(withIdentifier: "MsgInCommingCell") as! MsgInCommingCell
-        //
+        var sender:SBDUser
+        var messageContent:String
         
         if (message.isKind(of: SBDUserMessage.self)){
-            cell.messageLb.text = (message as! SBDUserMessage).message
+            messageContent = (message as! SBDUserMessage).message!
+            sender = (message as! SBDUserMessage).sender!
+        }else{
+            sender = (message as! SBDFileMessage).sender!
+            messageContent = ""
         }
         
-        return cell;
+        if(sender.userId == myId){
+             let cell = tbView.dequeueReusableCell(withIdentifier: "MsgOutGoingCell") as! MsgOutGoingCell
+            cell.messageLb.text = messageContent
+             return cell
+        }
+        
+        let cell = tbView.dequeueReusableCell(withIdentifier: "MsgInCommingCell") as! MsgInCommingCell
+        cell.messageLb.text = messageContent
+        return cell
+        
     }
     
     
@@ -293,11 +307,21 @@ class DetailMessageViewController: UIViewController,UITableViewDataSource,UITabl
         // Refresh messages
     }
     
-    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
-        let translations = (message as! SBDUserMessage).translations
-        let esTranslation = translations?["es"]
+    func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
         
-        // Display translation in UI.
     }
+    
+    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
+        //let translations = (message as! SBDUserMessage).translations
+        //let esTranslation = translations?["es"]
+        
+        DispatchQueue.main.async(execute: {
+            self.arrMessage.append(message)
+            self.tbView.reloadData()
+        })
+    }
+    
+
+    
     
 }
