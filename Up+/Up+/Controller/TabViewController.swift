@@ -16,6 +16,11 @@ class TabViewController: UIViewController {
     @IBOutlet weak var moreTab: UIView!
     @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
     
+    var messageVC:MessageViewController!
+    var contactVC:ContactViewController!
+    var timeLineVC:TimelineViewController!
+    var moreVC:MoreViewController!
+    
     var frameW = UIScreen.main.bounds.size.width
     var frameH = UIScreen.main.bounds.size.height
     var currentTab = 0
@@ -48,6 +53,7 @@ class TabViewController: UIViewController {
     
     func messageAction(){
         currentTab = 0
+        messageVC.loadChannelList()
         self.rotated()
     }
     
@@ -116,4 +122,19 @@ class TabViewController: UIViewController {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier! {
+        case "message":
+            messageVC = segue.destination as! MessageViewController
+        case "contact":
+            contactVC = segue.destination as! ContactViewController
+        case "timeline":
+            timeLineVC = segue.destination as! TimelineViewController
+        case "more":
+            moreVC = segue.destination as! MoreViewController
+        default: break
+            
+        }
+    }
 }

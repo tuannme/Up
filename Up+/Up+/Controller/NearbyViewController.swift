@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 import FirebaseDatabase
-
+import SendBirdSDK
 
 class NearbyViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
@@ -107,6 +107,17 @@ class NearbyViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return cell!
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let index = tbView.indexPathForSelectedRow
+        if let index = index{
+            let user = nearbyUsers[index.row]
+            let messageVC = segue.destination as! DetailMessageViewController
+            messageVC.memberId = user.userId
+            
+        }
+
+    }
     
+
     
 }

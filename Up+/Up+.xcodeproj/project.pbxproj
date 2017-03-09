@@ -23,6 +23,8 @@
 		1A135AC31E5BEEEF00655294 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A135AB11E5BEEEF00655294 /* TimelineViewController.swift */; };
 		1A135AC71E5BEEEF00655294 /* JumpDownSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A135AB71E5BEEEF00655294 /* JumpDownSegue.swift */; };
 		1A135AC81E5BEEEF00655294 /* MessageTbViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A135AB81E5BEEEF00655294 /* MessageTbViewCell.swift */; };
+		1A6E751E1E71071800FE480A /* MsgInCommingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E751D1E71071800FE480A /* MsgInCommingCell.swift */; };
+		1A6E75201E71072A00FE480A /* MsgOutGoingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E751F1E71072A00FE480A /* MsgOutGoingCell.swift */; };
 		1A74EC121E5FDB46000F0088 /* DetailMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC111E5FDB46000F0088 /* DetailMessageViewController.swift */; };
 		1A74EC971E5FEBB2000F0088 /* InputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC961E5FEBB2000F0088 /* InputAccessoryView.swift */; };
 		1A74EC991E6009FF000F0088 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */; };
@@ -98,6 +100,8 @@
 		1A135AB11E5BEEEF00655294 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		1A135AB71E5BEEEF00655294 /* JumpDownSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpDownSegue.swift; sourceTree = "<group>"; };
 		1A135AB81E5BEEEF00655294 /* MessageTbViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTbViewCell.swift; sourceTree = "<group>"; };
+		1A6E751D1E71071800FE480A /* MsgInCommingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgInCommingCell.swift; sourceTree = "<group>"; };
+		1A6E751F1E71072A00FE480A /* MsgOutGoingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgOutGoingCell.swift; sourceTree = "<group>"; };
 		1A74EC111E5FDB46000F0088 /* DetailMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMessageViewController.swift; sourceTree = "<group>"; };
 		1A74EC961E5FEBB2000F0088 /* InputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
 		1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				1A135AB81E5BEEEF00655294 /* MessageTbViewCell.swift */,
+				1A6E751D1E71071800FE480A /* MsgInCommingCell.swift */,
+				1A6E751F1E71072A00FE480A /* MsgOutGoingCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -643,6 +649,7 @@
 				1A7CB3E11E6FAD20001494A6 /* ImageCache.swift in Sources */,
 				1A135AC21E5BEEEF00655294 /* TabViewController.swift in Sources */,
 				CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */,
+				1A6E75201E71072A00FE480A /* MsgOutGoingCell.swift in Sources */,
 				1A74EC121E5FDB46000F0088 /* DetailMessageViewController.swift in Sources */,
 				1A135ABD1E5BEEEF00655294 /* LoginViewController.swift in Sources */,
 				CA66BF601E647383009F1607 /* LocationManager.swift in Sources */,
@@ -656,6 +663,7 @@
 				1A135AC71E5BEEEF00655294 /* JumpDownSegue.swift in Sources */,
 				1A135AC31E5BEEEF00655294 /* TimelineViewController.swift in Sources */,
 				1A7CB3AD1E6D52EB001494A6 /* ChannelViewController.swift in Sources */,
+				1A6E751E1E71071800FE480A /* MsgInCommingCell.swift in Sources */,
 				1A135AC01E5BEEEF00655294 /* MoreViewController.swift in Sources */,
 				1A74EC991E6009FF000F0088 /* KeyboardViewController.swift in Sources */,
 				1A7CB3AF1E6D68D9001494A6 /* ChannelDetailViewController.swift in Sources */,

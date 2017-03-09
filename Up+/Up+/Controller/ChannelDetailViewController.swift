@@ -200,8 +200,6 @@ class ChannelDetailViewController: UIViewController,UITableViewDataSource,UITabl
         }, completion: nil)
     }
     
-    
-    
     @IBAction func backAction(_ sender: Any) {
         self.navigationController!.popViewController(animated: true)
     }
