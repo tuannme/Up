@@ -1,0 +1,14 @@
+target 'Up+' do
+use_frameworks!
+  pod 'SendBirdSDK'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'GoogleSignIn'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'NVActivityIndicatorView'
+  pod 'GPUImage', '~> 0.1.7'
+  pod 'JTMaterialSpinner'
+  pod 'Alamofire', '~> 4.4'
+end

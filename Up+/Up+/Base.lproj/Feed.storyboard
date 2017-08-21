@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Timeline View Controller-->
+        <scene sceneID="63S-YY-ORk">
+            <objects>
+                <viewController storyboardIdentifier="TimelineViewController" id="ojV-cx-xeB" customClass="TimelineViewController" customModule="Up_" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nOz-N0-mkm"/>
+                        <viewControllerLayoutGuide type="bottom" id="wa7-9p-ZHV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xcd-56-dsQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsW-41-nNb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="6Sn-as-t7i"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GwN-4k-QeM">
+                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="b6b-12-6BP" customClass="MessageTbViewCell" customModule="Up_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6b-12-6BP" id="V8n-Hy-jFn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ojV-cx-xeB" id="b8o-4l-D0d"/>
+                                    <outlet property="delegate" destination="ojV-cx-xeB" id="vKo-bq-D5H"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SsW-41-nNb" secondAttribute="trailing" id="FGY-Hs-fte"/>
+                            <constraint firstItem="SsW-41-nNb" firstAttribute="top" secondItem="xcd-56-dsQ" secondAttribute="top" constant="20" id="Kg8-MG-6Zc"/>
+                            <constraint firstItem="GwN-4k-QeM" firstAttribute="top" secondItem="SsW-41-nNb" secondAttribute="bottom" id="UOh-z4-DkD"/>
+                            <constraint firstItem="GwN-4k-QeM" firstAttribute="leading" secondItem="xcd-56-dsQ" secondAttribute="leading" id="cZh-IC-73z"/>
+                            <constraint firstAttribute="trailing" secondItem="GwN-4k-QeM" secondAttribute="trailing" id="rWQ-A9-ypg"/>
+                            <constraint firstItem="wa7-9p-ZHV" firstAttribute="top" secondItem="GwN-4k-QeM" secondAttribute="bottom" id="uZR-kO-v7C"/>
+                            <constraint firstItem="SsW-41-nNb" firstAttribute="leading" secondItem="xcd-56-dsQ" secondAttribute="leading" id="wch-1w-N1N"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="SsW-41-nNb" id="Oxe-H5-ShZ"/>
+                        <outlet property="spaceToTopConstraint" destination="Kg8-MG-6Zc" id="Jpq-V6-PPj"/>
+                        <outlet property="tbView" destination="GwN-4k-QeM" id="4JE-nY-CG1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fIG-nR-2pt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="866" y="1789"/>
+        </scene>
+    </scenes>
+</document>
