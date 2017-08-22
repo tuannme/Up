@@ -205,12 +205,12 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
             
         }
         
-        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
-            
-            self.keyboardSpaceBottomConstraint.constant = self.BOTTOM_MARGIN
-            self.view.layoutIfNeeded()
-            
-        }, completion: nil)
+//        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
+//
+//            self.keyboardSpaceBottomConstraint.constant = self.BOTTOM_MARGIN
+//            self.view.layoutIfNeeded()
+//
+//        }, completion: nil)
     }
     
 
@@ -225,18 +225,27 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func cameraAction(_ sender: Any) {
-        MEDIA_KEYBOARD_HEIGHT = 216
+        UIView.animate(withDuration: 0.2, animations: {
+            self.keyboardSpaceBottomConstraint.constant = 220
+            self.view.layoutIfNeeded()
+        })
         self.inputTv.resignFirstResponder()
     }
     
     
     @IBAction func drawAction(_ sender: Any) {
-        MEDIA_KEYBOARD_HEIGHT = 216
+        UIView.animate(withDuration: 0.2, animations: {
+            self.keyboardSpaceBottomConstraint.constant = 220
+            self.view.layoutIfNeeded()
+        })
         self.inputTv.resignFirstResponder()
     }
     
     @IBAction func mediaAction(_ sender: Any) {
-        MEDIA_KEYBOARD_HEIGHT = 216
+        UIView.animate(withDuration: 0.2, animations: {
+            self.keyboardSpaceBottomConstraint.constant = 220
+            self.view.layoutIfNeeded()
+        })
         self.inputTv.resignFirstResponder()
     }
     
