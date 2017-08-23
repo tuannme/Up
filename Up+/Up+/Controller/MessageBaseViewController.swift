@@ -15,7 +15,7 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     var memberId:String!
     var groupChannel:SBDGroupChannel?
     let myId = UserDefaults.standard.object(forKey: USER_ID) as! String
-    
+    var keyboardViewController:KeyboardViewController?
     
     @IBOutlet weak var inputViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tbView: UITableView!
@@ -95,6 +95,8 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     }
     
     func touchOnInputView(){
+        
+        keyboardViewController?.setKeyboardType(type: .NONE)
         
         isShouldHideKeyboard = true
         self.inputTv.becomeFirstResponder()
@@ -226,7 +228,9 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func cameraAction(_ sender: Any) {
-
+        
+        keyboardViewController?.setKeyboardType(type: .CAMERA)
+        
         isShouldHideKeyboard = false
         if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
             UIView.animate(withDuration: 0.2, animations: {
@@ -242,6 +246,8 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     
     @IBAction func drawAction(_ sender: Any) {
 
+        keyboardViewController?.setKeyboardType(type: .DRAW)
+        
         isShouldHideKeyboard = false
         if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
             UIView.animate(withDuration: 0.2, animations: {
@@ -256,6 +262,8 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     
     @IBAction func mediaAction(_ sender: Any) {
 
+        keyboardViewController?.setKeyboardType(type: .MEDIA)
+        
         isShouldHideKeyboard = false
         if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
             UIView.animate(withDuration: 0.2, animations: {
@@ -292,9 +300,10 @@ extension MessageBaseViewController:UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        if isShouldHideKeyboard == false{
+        if isShouldHideKeyboard == false && decelerate == false{
             
-            let value = keyboardSpaceBottomConstraint.constant < 20 ? 0 : KEYBOARD_HEIGHT
+            let value = keyboardSpaceBottomConstraint.constant < 50 ? 0 : KEYBOARD_HEIGHT
+            self.isShouldHideKeyboard = value < KEYBOARD_HEIGHT ? true : false
             UIView.animate(withDuration: 0.2, animations: {
                 self.keyboardSpaceBottomConstraint.constant = value
                 self.view.layoutIfNeeded()
@@ -304,9 +313,28 @@ extension MessageBaseViewController:UIScrollViewDelegate{
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
+        if isShouldHideKeyboard == false {
+            
+            let value = keyboardSpaceBottomConstraint.constant < 50 ? 0 : KEYBOARD_HEIGHT
+            self.isShouldHideKeyboard = value < KEYBOARD_HEIGHT ? true : false
+
+            UIView.animate(withDuration: 0.2, animations: {
+                self.keyboardSpaceBottomConstraint.constant = value
+                self.view.layoutIfNeeded()
+            })
+            
+        }
     }
 
     
+}
+
+extension MessageBaseViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let _keyboardViewController = segue.destination as? KeyboardViewController{
+            keyboardViewController = _keyboardViewController
+        }
+    }
 }
 

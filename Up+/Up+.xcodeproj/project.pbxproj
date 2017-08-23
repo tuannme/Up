@@ -64,8 +64,13 @@
 		CAE139EC1F4B09AA000D708C /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */; };
 		CAE139EE1F4B0A49000D708C /* MessageBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */; };
 		CAE139F01F4B0AB5000D708C /* MessageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */; };
+		F1711D2D1F4D412D008E439C /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D2C1F4D412D008E439C /* OptionCell.swift */; };
+		F1711D331F4D4F24008E439C /* CameraKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D321F4D4F24008E439C /* CameraKeyBoardViewController.swift */; };
+		F1711D351F4D5424008E439C /* DrawKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D341F4D5424008E439C /* DrawKeyboardViewController.swift */; };
+		F1711D371F4D544A008E439C /* MediaKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D361F4D544A008E439C /* MediaKeyboardViewController.swift */; };
 		F17DDD201F4BCE05006E979A /* Uitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DDD1F1F4BCE05006E979A /* Uitls.swift */; };
 		F17DDD241F4BD084006E979A /* ConstantString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DDD231F4BD084006E979A /* ConstantString.swift */; };
+		F1B886E71F4D617700EA7E9F /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B886E61F4D617700EA7E9F /* PhotoViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,8 +158,13 @@
 		CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBaseViewController.swift; sourceTree = "<group>"; };
 		CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGroupViewController.swift; sourceTree = "<group>"; };
+		F1711D2C1F4D412D008E439C /* OptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		F1711D321F4D4F24008E439C /* CameraKeyBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraKeyBoardViewController.swift; sourceTree = "<group>"; };
+		F1711D341F4D5424008E439C /* DrawKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawKeyboardViewController.swift; sourceTree = "<group>"; };
+		F1711D361F4D544A008E439C /* MediaKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyboardViewController.swift; sourceTree = "<group>"; };
 		F17DDD1F1F4BCE05006E979A /* Uitls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitls.swift; sourceTree = "<group>"; };
 		F17DDD231F4BD084006E979A /* ConstantString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantString.swift; sourceTree = "<group>"; };
+		F1B886E61F4D617700EA7E9F /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,11 +281,11 @@
 		1A135AB61E5BEEEF00655294 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F1711D2B1F4D40FC008E439C /* KeyboardCell */,
 				CA742D701E629E6300E15A7A /* Spinner */,
-				1A74EC951E5FEB87000F0088 /* Cell */,
+				1A74EC951E5FEB87000F0088 /* MessageCell */,
 				1A74EC941E5FEB7D000F0088 /* Segue */,
 				1A74EC931E5FEB74000F0088 /* InputView */,
-				CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,14 +316,14 @@
 			name = Segue;
 			sourceTree = "<group>";
 		};
-		1A74EC951E5FEB87000F0088 /* Cell */ = {
+		1A74EC951E5FEB87000F0088 /* MessageCell */ = {
 			isa = PBXGroup;
 			children = (
 				1A135AB81E5BEEEF00655294 /* MessageTbViewCell.swift */,
 				1A6E751D1E71071800FE480A /* MsgInCommingCell.swift */,
 				1A6E751F1E71072A00FE480A /* MsgOutGoingCell.swift */,
 			);
-			name = Cell;
+			name = MessageCell;
 			sourceTree = "<group>";
 		};
 		1A7CB3A51E6D3A1B001494A6 /* MoreController */ = {
@@ -450,10 +460,23 @@
 			name = Chatting;
 			sourceTree = "<group>";
 		};
+		F1711D2B1F4D40FC008E439C /* KeyboardCell */ = {
+			isa = PBXGroup;
+			children = (
+				CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */,
+				F1711D2C1F4D412D008E439C /* OptionCell.swift */,
+				F1B886E61F4D617700EA7E9F /* PhotoViewCell.swift */,
+			);
+			name = KeyboardCell;
+			sourceTree = "<group>";
+		};
 		F17DDD1B1F4BCA66006E979A /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
 				1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */,
+				F1711D321F4D4F24008E439C /* CameraKeyBoardViewController.swift */,
+				F1711D341F4D5424008E439C /* DrawKeyboardViewController.swift */,
+				F1711D361F4D544A008E439C /* MediaKeyboardViewController.swift */,
 			);
 			name = Keyboard;
 			sourceTree = "<group>";
@@ -700,8 +723,10 @@
 				1A7CB3E11E6FAD20001494A6 /* ImageCache.swift in Sources */,
 				1A135AC21E5BEEEF00655294 /* TabViewController.swift in Sources */,
 				CAC1E8CD1F4C9555007CB9FE /* CameraViewCell.swift in Sources */,
+				F1711D371F4D544A008E439C /* MediaKeyboardViewController.swift in Sources */,
 				CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */,
 				1A6E75201E71072A00FE480A /* MsgOutGoingCell.swift in Sources */,
+				F1711D351F4D5424008E439C /* DrawKeyboardViewController.swift in Sources */,
 				F17DDD201F4BCE05006E979A /* Uitls.swift in Sources */,
 				F17DDD241F4BD084006E979A /* ConstantString.swift in Sources */,
 				CAE139EE1F4B0A49000D708C /* MessageBaseViewController.swift in Sources */,
@@ -709,12 +734,14 @@
 				1A135ABD1E5BEEEF00655294 /* LoginViewController.swift in Sources */,
 				CA66BF601E647383009F1607 /* LocationManager.swift in Sources */,
 				1A74EC971E5FEBB2000F0088 /* InputAccessoryView.swift in Sources */,
+				F1711D331F4D4F24008E439C /* CameraKeyBoardViewController.swift in Sources */,
 				1A135AC11E5BEEEF00655294 /* SignUpViewController.swift in Sources */,
 				1A135A691E5BECEE00655294 /* AppDelegate.swift in Sources */,
 				1A135ABC1E5BEEEF00655294 /* ContactViewController.swift in Sources */,
 				1A9DF41A1E6907CA0046310B /* FIRUserManager.swift in Sources */,
 				1A7CB3AB1E6D52D9001494A6 /* NearbyViewController.swift in Sources */,
 				1A135AC81E5BEEEF00655294 /* MessageTbViewCell.swift in Sources */,
+				F1711D2D1F4D412D008E439C /* OptionCell.swift in Sources */,
 				1A135AC71E5BEEEF00655294 /* JumpDownSegue.swift in Sources */,
 				1A135AC31E5BEEEF00655294 /* TimelineViewController.swift in Sources */,
 				1A7CB3AD1E6D52EB001494A6 /* ChannelViewController.swift in Sources */,
@@ -724,6 +751,7 @@
 				CAE139F01F4B0AB5000D708C /* MessageGroupViewController.swift in Sources */,
 				1A135ABE1E5BEEEF00655294 /* MainViewController.swift in Sources */,
 				1A9DF41C1E690D2D0046310B /* User.swift in Sources */,
+				F1B886E71F4D617700EA7E9F /* PhotoViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

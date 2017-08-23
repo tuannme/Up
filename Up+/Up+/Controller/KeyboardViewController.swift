@@ -8,17 +8,46 @@
 
 import UIKit
 
+enum KEYBOARD_TYPE{
+    case NONE
+    case CAMERA
+    case DRAW
+    case MEDIA
+}
+
 class KeyboardViewController: UIViewController {
 
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // Do any additional setup after loading the view.
     }
 
+    func setKeyboardType(type:KEYBOARD_TYPE){
+        
+        for view in self.view.subviews {
+            view.removeFromSuperview()
+        }
+        
+        switch type {
+        case .CAMERA:
+            let cameraVC = CameraKeyBoardViewController()
+            self.view.addSubview(cameraVC.view)
+            self.addChildViewController(cameraVC)
+            break
+        case .DRAW:
+            let drawVC = DrawKeyboardViewController()
+            self.view.addSubview(drawVC.view)
+            self.addChildViewController(drawVC)
+            break
+        case .MEDIA:
+            let mediaVC = MediaKeyboardViewController()
+            self.view.addSubview(mediaVC.view)
+            self.addChildViewController(mediaVC)
+            break
+        default:
+            break
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -26,61 +55,3 @@ class KeyboardViewController: UIViewController {
     
 }
 
-extension KeyboardViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0,1:
-            return 1
-        default:
-            return 3
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        switch indexPath.section {
-        case 0:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: "optionCell", for: indexPath)
-            return item
-        case 1:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: "cameraCell", for: indexPath) as! CameraViewCell
-            return item
-            
-        default:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath)
-            return item
-        }
-
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        switch indexPath.section {
-        case 0,1:
-            return CGSize(width: 130, height: 220)
-        default:
-            return CGSize(width: 107, height: 107)
-        }
-    }
-    
-
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets{
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right:5)
-    }
-    
-    
-}

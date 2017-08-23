@@ -11,7 +11,7 @@ import AVFoundation
 
 class CameraViewCell: UICollectionViewCell {
 
-    let preview:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: 220))
+    let preview:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: KEYBOARD_HEIGHT))
     let myButton: UIButton = UIButton()
     
     //Camera Capture requiered properties
@@ -21,14 +21,13 @@ class CameraViewCell: UICollectionViewCell {
     var captureDevice : AVCaptureDevice!
     let session = AVCaptureSession()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         myButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         myButton.backgroundColor = UIColor.red.withAlphaComponent(0.5)
         myButton.layer.masksToBounds = true
         myButton.layer.cornerRadius = 20.0
-        myButton.layer.position = CGPoint(x: self.preview.frame.width/2, y:180)
+        myButton.layer.position = CGPoint(x: self.preview.frame.width/2, y:KEYBOARD_HEIGHT - 40)
         myButton.addTarget(self, action: #selector(self.onClickMyButton(sender:)), for: UIControlEvents.touchUpInside)
         
         self.contentView.addSubview(preview)
@@ -37,6 +36,11 @@ class CameraViewCell: UICollectionViewCell {
         self.setupAVCapture()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+
     func onClickMyButton(sender:Any) {
         
     }

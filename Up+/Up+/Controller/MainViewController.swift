@@ -14,7 +14,6 @@ class MainViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
