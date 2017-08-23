@@ -53,6 +53,7 @@
 		CA66BF601E647383009F1607 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66BF5F1E647383009F1607 /* LocationManager.swift */; };
 		CA742D6E1E61DB1E00E15A7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */; };
 		CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA742D741E629EA000E15A7A /* SpinnerSwift.swift */; };
+		CAC1E8CD1F4C9555007CB9FE /* CameraViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */; };
 		CAC9941D1E70519900C96334 /* ic_bubble_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC9941B1E70519900C96334 /* ic_bubble_blue.png */; };
 		CAC9941E1E70519900C96334 /* ic_bubble_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC9941C1E70519900C96334 /* ic_bubble_gray.png */; };
 		CAD4FD8F1F4B4B5800557B73 /* Contact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD4FD851F4B4B5800557B73 /* Contact.storyboard */; };
@@ -141,6 +142,7 @@
 		CA742D331E612D3700E15A7A /* Up-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Up-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CA742D741E629EA000E15A7A /* SpinnerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerSwift.swift; sourceTree = "<group>"; };
+		CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewCell.swift; sourceTree = "<group>"; };
 		CAC9941B1E70519900C96334 /* ic_bubble_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_bubble_blue.png; sourceTree = "<group>"; };
 		CAC9941C1E70519900C96334 /* ic_bubble_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_bubble_gray.png; sourceTree = "<group>"; };
 		CAD4FD861F4B4B5800557B73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Contact.storyboard; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				1A74EC951E5FEB87000F0088 /* Cell */,
 				1A74EC941E5FEB7D000F0088 /* Segue */,
 				1A74EC931E5FEB74000F0088 /* InputView */,
+				CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				CA4564351F49DA8100ABE637 /* MessageFriendViewController.swift in Sources */,
 				1A7CB3E11E6FAD20001494A6 /* ImageCache.swift in Sources */,
 				1A135AC21E5BEEEF00655294 /* TabViewController.swift in Sources */,
+				CAC1E8CD1F4C9555007CB9FE /* CameraViewCell.swift in Sources */,
 				CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */,
 				1A6E75201E71072A00FE480A /* MsgOutGoingCell.swift in Sources */,
 				F17DDD201F4BCE05006E979A /* Uitls.swift in Sources */,
@@ -908,7 +912,7 @@
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dream.Up-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -925,7 +929,7 @@
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dream.Up-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dream.Up;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Up+/Up-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

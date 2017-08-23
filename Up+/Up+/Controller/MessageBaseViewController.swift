@@ -211,6 +211,7 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
             self.view.layoutIfNeeded()
             
         }, completion: nil)
+
     }
     
 
@@ -225,6 +226,7 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func cameraAction(_ sender: Any) {
+
         isShouldHideKeyboard = false
         if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
             UIView.animate(withDuration: 0.2, animations: {
@@ -233,11 +235,13 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
             })
             return
         }
+
         self.inputTv.resignFirstResponder()
     }
     
     
     @IBAction func drawAction(_ sender: Any) {
+
         isShouldHideKeyboard = false
         if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
             UIView.animate(withDuration: 0.2, animations: {
@@ -246,10 +250,12 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
             })
             return
         }
+
         self.inputTv.resignFirstResponder()
     }
     
     @IBAction func mediaAction(_ sender: Any) {
+
         isShouldHideKeyboard = false
         if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
             UIView.animate(withDuration: 0.2, animations: {
@@ -258,6 +264,7 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
             })
             return
         }
+
         self.inputTv.resignFirstResponder()
     }
     
@@ -284,12 +291,12 @@ extension MessageBaseViewController:UIScrollViewDelegate{
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if isShouldHideKeyboard == false &&
-            self.keyboardSpaceBottomConstraint.constant != self.BOTTOM_MARGIN &&
-            self.keyboardSpaceBottomConstraint.constant < KEYBOARD_HEIGHT{
+        
+        if isShouldHideKeyboard == false{
             
+            let value = keyboardSpaceBottomConstraint.constant < 20 ? 0 : KEYBOARD_HEIGHT
             UIView.animate(withDuration: 0.2, animations: {
-                self.keyboardSpaceBottomConstraint.constant = KEYBOARD_HEIGHT
+                self.keyboardSpaceBottomConstraint.constant = value
                 self.view.layoutIfNeeded()
             })
             
