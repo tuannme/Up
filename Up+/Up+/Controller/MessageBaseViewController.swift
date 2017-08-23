@@ -31,12 +31,12 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var mediaMsgLeadingSpaceConstraint: NSLayoutConstraint!
     
     
-    let INPUT_VIEW_MAX_HEIGHT:CGFloat = 70
-    let BOTTOM_MARGIN:CGFloat = 0
-    let INPUT_SIZE_MIN:CGFloat = 40
+    let INPUT_VIEW_MAX_HEIGHT:CGFloat = 70.0
+    let BOTTOM_MARGIN:CGFloat = 0.0
+    let INPUT_SIZE_MIN:CGFloat = 40.0
     let LINE_HEIGHT:CGFloat = 22.5
     
-    var MEDIA_KEYBOARD_HEIGHT:CGFloat = 0
+    var isShouldHideKeyboard = true
     
     var accessoryView:InputAccessoryView?
     
@@ -79,9 +79,8 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
         
         accessoryView?.inputAcessoryViewFrameChangedBlock = {
             (inputAccessoryViewFrame) -> Void in
-            var value = self.view.frame.height - inputAccessoryViewFrame.minY - (self.inputTv.inputAccessoryView?.frame.height)! + self.BOTTOM_MARGIN
-            value = max(value, self.MEDIA_KEYBOARD_HEIGHT)
-            self.keyboardSpaceBottomConstraint.constant = max(self.BOTTOM_MARGIN, value);
+            let value = self.view.frame.height - inputAccessoryViewFrame.minY - (self.inputTv.inputAccessoryView?.frame.height)! + self.BOTTOM_MARGIN
+            self.keyboardSpaceBottomConstraint.constant = max(self.BOTTOM_MARGIN, value)
         }
     }
 
@@ -97,10 +96,9 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     
     func touchOnInputView(){
         
-        if(keyboardSpaceBottomConstraint.constant == 0 && listenView.isHidden == false){
-            self.inputTv.becomeFirstResponder()
-        }
-        
+        isShouldHideKeyboard = true
+        self.inputTv.becomeFirstResponder()
+
         self.listenView.isHidden = true
         self.showMediaBt.isHidden = false
         
@@ -207,7 +205,9 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
             
-            self.keyboardSpaceBottomConstraint.constant = self.BOTTOM_MARGIN
+            let space = self.isShouldHideKeyboard ? self.BOTTOM_MARGIN : KEYBOARD_HEIGHT
+            self.keyboardSpaceBottomConstraint.constant = space
+            
             self.view.layoutIfNeeded()
             
         }, completion: nil)
@@ -225,18 +225,39 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func cameraAction(_ sender: Any) {
-        MEDIA_KEYBOARD_HEIGHT = 216
+        isShouldHideKeyboard = false
+        if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
+            UIView.animate(withDuration: 0.2, animations: {
+                self.keyboardSpaceBottomConstraint.constant = KEYBOARD_HEIGHT
+                self.view.layoutIfNeeded()
+            })
+            return
+        }
         self.inputTv.resignFirstResponder()
     }
     
     
     @IBAction func drawAction(_ sender: Any) {
-        MEDIA_KEYBOARD_HEIGHT = 216
+        isShouldHideKeyboard = false
+        if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
+            UIView.animate(withDuration: 0.2, animations: {
+                self.keyboardSpaceBottomConstraint.constant = KEYBOARD_HEIGHT
+                self.view.layoutIfNeeded()
+            })
+            return
+        }
         self.inputTv.resignFirstResponder()
     }
     
     @IBAction func mediaAction(_ sender: Any) {
-        MEDIA_KEYBOARD_HEIGHT = 216
+        isShouldHideKeyboard = false
+        if keyboardSpaceBottomConstraint.constant == BOTTOM_MARGIN{
+            UIView.animate(withDuration: 0.2, animations: {
+                self.keyboardSpaceBottomConstraint.constant = KEYBOARD_HEIGHT
+                self.view.layoutIfNeeded()
+            })
+            return
+        }
         self.inputTv.resignFirstResponder()
     }
     
@@ -245,5 +266,40 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension MessageBaseViewController:UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isShouldHideKeyboard == false{
+            
+            let p = scrollView.panGestureRecognizer.location(in: scrollView)
+            let  absP = scrollView.convert(p, to: self.view)
+            let value = SCREEN_HEIGHT - absP.y - 3
+            let keyboardHeight = min(value, KEYBOARD_HEIGHT)
+            
+            self.keyboardSpaceBottomConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+        
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if isShouldHideKeyboard == false &&
+            self.keyboardSpaceBottomConstraint.constant != self.BOTTOM_MARGIN &&
+            self.keyboardSpaceBottomConstraint.constant < KEYBOARD_HEIGHT{
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.keyboardSpaceBottomConstraint.constant = KEYBOARD_HEIGHT
+                self.view.layoutIfNeeded()
+            })
+            
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+    }
+
+    
 }
 

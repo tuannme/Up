@@ -63,6 +63,8 @@
 		CAE139EC1F4B09AA000D708C /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */; };
 		CAE139EE1F4B0A49000D708C /* MessageBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */; };
 		CAE139F01F4B0AB5000D708C /* MessageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */; };
+		F17DDD201F4BCE05006E979A /* Uitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DDD1F1F4BCE05006E979A /* Uitls.swift */; };
+		F17DDD241F4BD084006E979A /* ConstantString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17DDD231F4BD084006E979A /* ConstantString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +109,6 @@
 		1A6E751F1E71072A00FE480A /* MsgOutGoingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgOutGoingCell.swift; sourceTree = "<group>"; };
 		1A74EC961E5FEBB2000F0088 /* InputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
 		1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
-		1A7CB3A41E6D1C0C001494A6 /* DefineString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineString.h; sourceTree = "<group>"; };
 		1A7CB3AA1E6D52D9001494A6 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		1A7CB3AC1E6D52EB001494A6 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		1A7CB3B91E6E75DC001494A6 /* app_icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_120.png; sourceTree = "<group>"; };
@@ -150,6 +151,8 @@
 		CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBaseViewController.swift; sourceTree = "<group>"; };
 		CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGroupViewController.swift; sourceTree = "<group>"; };
+		F17DDD1F1F4BCE05006E979A /* Uitls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uitls.swift; sourceTree = "<group>"; };
+		F17DDD231F4BD084006E979A /* ConstantString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,17 +206,18 @@
 		1A135A671E5BECEE00655294 /* Up+ */ = {
 			isa = PBXGroup;
 			children = (
-				CAD4FD851F4B4B5800557B73 /* Contact.storyboard */,
-				CAD4FD871F4B4B5800557B73 /* Feed.storyboard */,
-				CAD4FD891F4B4B5800557B73 /* Main.storyboard */,
-				CAD4FD8B1F4B4B5800557B73 /* Message.storyboard */,
-				CAD4FD8D1F4B4B5800557B73 /* Setting.storyboard */,
 				1A135AB21E5BEEEF00655294 /* Resource */,
 				CA742D341E61DAAC00E15A7A /* Configuration */,
-				CA66BF5E1E647341009F1607 /* Model */,
-				1A135AA91E5BEEEF00655294 /* Controller */,
-				1A135AB61E5BEEEF00655294 /* View */,
+				F17DDD1E1F4BCDD4006E979A /* Utils */,
+				CAD4FD891F4B4B5800557B73 /* Main.storyboard */,
+				CAD4FD8B1F4B4B5800557B73 /* Message.storyboard */,
+				CAD4FD851F4B4B5800557B73 /* Contact.storyboard */,
+				CAD4FD871F4B4B5800557B73 /* Feed.storyboard */,
+				CAD4FD8D1F4B4B5800557B73 /* Setting.storyboard */,
 				1A135A681E5BECEE00655294 /* AppDelegate.swift */,
+				CA66BF5E1E647341009F1607 /* Model */,
+				1A135AB61E5BEEEF00655294 /* View */,
+				1A135AA91E5BEEEF00655294 /* Controller */,
 			);
 			path = "Up+";
 			sourceTree = "<group>";
@@ -277,8 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */,
+				F17DDD1B1F4BCA66006E979A /* Keyboard */,
 				CAE139EA1F4B096E000D708C /* Chatting */,
-				1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */,
 			);
 			name = MessageController;
 			sourceTree = "<group>";
@@ -395,7 +399,7 @@
 				CA742D331E612D3700E15A7A /* Up-Bridging-Header.h */,
 				1A135A741E5BECEE00655294 /* Info.plist */,
 				CA66BF5D1E6454C9009F1607 /* Configuration.h */,
-				1A7CB3A41E6D1C0C001494A6 /* DefineString.h */,
+				F17DDD231F4BD084006E979A /* ConstantString.swift */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -436,11 +440,27 @@
 		CAE139EA1F4B096E000D708C /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
-				CA4564341F49DA8100ABE637 /* MessageFriendViewController.swift */,
 				CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */,
+				CA4564341F49DA8100ABE637 /* MessageFriendViewController.swift */,
 				CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */,
 			);
 			name = Chatting;
+			sourceTree = "<group>";
+		};
+		F17DDD1B1F4BCA66006E979A /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1A74EC981E6009FF000F0088 /* KeyboardViewController.swift */,
+			);
+			name = Keyboard;
+			sourceTree = "<group>";
+		};
+		F17DDD1E1F4BCDD4006E979A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F17DDD1F1F4BCE05006E979A /* Uitls.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F823F9B8A62C18261A2F6581 /* Frameworks */ = {
@@ -522,7 +542,7 @@
 				TargetAttributes = {
 					1A135A641E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GJE9S37JFS;
+						DevelopmentTeam = DJTUNYT65H;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -678,6 +698,8 @@
 				1A135AC21E5BEEEF00655294 /* TabViewController.swift in Sources */,
 				CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */,
 				1A6E75201E71072A00FE480A /* MsgOutGoingCell.swift in Sources */,
+				F17DDD201F4BCE05006E979A /* Uitls.swift in Sources */,
+				F17DDD241F4BD084006E979A /* ConstantString.swift in Sources */,
 				CAE139EE1F4B0A49000D708C /* MessageBaseViewController.swift in Sources */,
 				CAE139EC1F4B09AA000D708C /* MessageListViewController.swift in Sources */,
 				1A135ABD1E5BEEEF00655294 /* LoginViewController.swift in Sources */,
@@ -882,7 +904,7 @@
 			baseConfigurationReference = C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = DJTUNYT65H;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -899,7 +921,7 @@
 			baseConfigurationReference = 52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = DJTUNYT65H;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
