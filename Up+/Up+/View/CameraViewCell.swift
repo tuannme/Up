@@ -11,11 +11,14 @@ import AVFoundation
 
 class CameraViewCell: UICollectionViewCell {
 
-    let preview:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: KEYBOARD_HEIGHT))
+    var takePhotoCallBack : ((UIImage) -> Void)?
+    
+    let preview:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 170, height: KEYBOARD_HEIGHT))
     let myButton: UIButton = UIButton()
     
     //Camera Capture requiered properties
-    var videoDataOutput: AVCaptureVideoDataOutput!
+    var photoDataOutput:AVCapturePhotoOutput!
+    //var videoDataOutput: AVCaptureVideoDataOutput!
     var videoDataOutputQueue: DispatchQueue!
     var previewLayer:AVCaptureVideoPreviewLayer!
     var captureDevice : AVCaptureDevice!
@@ -40,14 +43,39 @@ class CameraViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     func onClickMyButton(sender:Any) {
-        
+        let settings = AVCapturePhotoSettings()
+        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+                             kCVPixelBufferWidthKey as String: 160,
+                             kCVPixelBufferHeightKey as String: 160]
+        settings.previewPhotoFormat = previewFormat
+        self.photoDataOutput.capturePhoto(with: settings, delegate: self)
     }
     
     
 }
 
+extension CameraViewCell : AVCapturePhotoCaptureDelegate{
+    
+    func capture(_ output: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
+            guard let image = UIImage(data: dataImage) else{return}
+            takePhotoCallBack?(image)
+        }
+    }
+    
+}
+
+extension CameraViewCell{
+    
+    func addEventSelectPhoto(completion:@escaping ((UIImage) -> Void)){
+        takePhotoCallBack = completion
+    }
+    
+    
+}
 
 extension CameraViewCell:  AVCaptureVideoDataOutputSampleBufferDelegate{
     func setupAVCapture(){
@@ -77,7 +105,12 @@ extension CameraViewCell:  AVCaptureVideoDataOutputSampleBufferDelegate{
         if self.session.canAddInput(deviceInput){
             self.session.addInput(deviceInput);
         }
-        
+        // setting photo mode
+        photoDataOutput = AVCapturePhotoOutput()
+        if session.canAddOutput(self.photoDataOutput){
+            session.addOutput(self.photoDataOutput)
+        }
+        /* if setting video mode
         videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.alwaysDiscardsLateVideoFrames=true
         videoDataOutputQueue = DispatchQueue(label: "VideoDataOutputQueue")
@@ -86,7 +119,7 @@ extension CameraViewCell:  AVCaptureVideoDataOutputSampleBufferDelegate{
             session.addOutput(self.videoDataOutput)
         }
         videoDataOutput.connection(withMediaType: AVMediaTypeVideo).isEnabled = true
-        
+        */
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
         self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         

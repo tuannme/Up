@@ -30,6 +30,7 @@ class KeyboardViewController: UIViewController {
         switch type {
         case .CAMERA:
             let cameraVC = CameraKeyBoardViewController()
+            cameraVC.delegate = self
             self.view.addSubview(cameraVC.view)
             self.addChildViewController(cameraVC)
             break
@@ -54,4 +55,19 @@ class KeyboardViewController: UIViewController {
     }
     
 }
+
+extension KeyboardViewController:CameraKeyBoardDeleagete{
+    func willShowPhotoLibrary() {
+        
+    }
+    func willShowCamera() {
+        
+    }
+    
+    func willSendPhoto(photo: UIImage) {
+        
+    }
+    
+}
+
 

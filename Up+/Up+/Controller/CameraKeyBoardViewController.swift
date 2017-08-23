@@ -13,12 +13,20 @@ private let photoCell = "photoCell"
 private let cameraCell = "cameraCell"
 private let optionCell = "optionCell"
 
+protocol CameraKeyBoardDeleagete:class {
+    func willSendPhoto(photo:UIImage)
+    func willShowCamera()
+    func willShowPhotoLibrary()
+}
+
 class CameraKeyBoardViewController: UIViewController {
 
+    weak var delegate:CameraKeyBoardDeleagete?
+    
     var collectionView:UICollectionView!
     var assetCollection: PHAssetCollection!
     var photosAsset: PHFetchResult<PHAsset>!
-    let photoSize = CGSize(width: KEYBOARD_HEIGHT/2 - 1, height: KEYBOARD_HEIGHT/2 - 1)
+    let photoSize = CGSize(width: KEYBOARD_HEIGHT/2 - 0.5, height: KEYBOARD_HEIGHT/2 - 0.5)
     let assetThumbnailSize = CGSize(width: 200, height: 200)
     
     override func viewDidLoad() {
@@ -30,7 +38,6 @@ class CameraKeyBoardViewController: UIViewController {
         let fetchOptions = PHFetchOptions()
         self.photosAsset = PHAsset.fetchAssets(with: fetchOptions)
         
-
         // Do any additional setup after loading the view, typically from a nib.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1.0
@@ -45,7 +52,7 @@ class CameraKeyBoardViewController: UIViewController {
         
         self.collectionView.register(PhotoViewCell.self, forCellWithReuseIdentifier: photoCell)
         self.collectionView.register(CameraViewCell.self, forCellWithReuseIdentifier: cameraCell)
-        self.collectionView.register(OptionCell.self, forCellWithReuseIdentifier: optionCell)
+        self.collectionView.register(OptionViewCell.self, forCellWithReuseIdentifier: optionCell)
         
         self.view.addSubview(collectionView)
         
@@ -53,6 +60,7 @@ class CameraKeyBoardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.collectionView.setContentOffset(CGPoint(x: 150, y: 0), animated: false)
     }
     
 
@@ -63,11 +71,6 @@ class CameraKeyBoardViewController: UIViewController {
     
 }
 
-extension CameraKeyBoardViewController:UIImagePickerControllerDelegate{
-    
-    
-    
-}
 
 
 extension CameraKeyBoardViewController:UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -75,7 +78,6 @@ extension CameraKeyBoardViewController:UICollectionViewDataSource,UICollectionVi
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
@@ -89,12 +91,25 @@ extension CameraKeyBoardViewController:UICollectionViewDataSource,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: optionCell, for: indexPath)
-            return item
+            let option = collectionView.dequeueReusableCell(withReuseIdentifier: optionCell, for: indexPath) as! OptionViewCell
+            option.addEventAction(completion: {
+                [weak self] option in
+                guard let _self = self else{return}
+                if option == .camera{
+                    _self.delegate?.willShowCamera()
+                }else{
+                    _self.delegate?.willShowPhotoLibrary()
+                }
+                
+            })
+            return option
         case 1:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: cameraCell, for: indexPath)
-            return item
-            
+            let camera = collectionView.dequeueReusableCell(withReuseIdentifier: cameraCell, for: indexPath) as! CameraViewCell
+            camera.addEventSelectPhoto(completion: { [weak self](image) in
+                guard let _self = self else{return}
+                _self.delegate?.willSendPhoto(photo: image)
+            })
+            return camera
         default:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: photoCell, for: indexPath) as! PhotoViewCell
             
@@ -117,10 +132,30 @@ extension CameraKeyBoardViewController:UICollectionViewDataSource,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         switch indexPath.section {
-        case 0,1:
-            return CGSize(width: 130, height: KEYBOARD_HEIGHT)
+        case 0:
+            return CGSize(width: 150, height: KEYBOARD_HEIGHT)
+        case 1:
+            return CGSize(width: 170, height: KEYBOARD_HEIGHT)
         default:
             return photoSize
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            break
+        case 1:
+            break
+        default:
+            let asset: PHAsset = self.photosAsset[indexPath.item]
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFit, options: nil, resultHandler: {(image, info)in
+                if let _image = image {
+                    self.delegate?.willSendPhoto(photo: _image)
+                }
+            })
+            
+            break
         }
     }
     

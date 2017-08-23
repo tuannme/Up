@@ -70,7 +70,7 @@ class MessageFriendViewController:MessageBaseViewController{
                     self.tbView.insertRows(at: [indexBottom], with: .bottom)
                     self.tbView.endUpdates()
                     self.tbView.scrollToRow(at: indexBottom, at: .bottom, animated: true)
-                    //self.tbView.reloadData()
+ 
                 })
                 
             })
