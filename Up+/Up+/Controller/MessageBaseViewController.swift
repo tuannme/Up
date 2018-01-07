@@ -182,6 +182,8 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
             
+            
+            
             let offset = self.tbView.contentOffset.y + keyboardHeight
             self.tbView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
             
