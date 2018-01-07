@@ -156,7 +156,7 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
     }
     
     func autoResizeTypingTextView() {
-        
+        return
         let message = inputTv.text
         let font = UIFont (name: "Helvetica Neue", size: 17)
         let minSize = "A".heightWithConstrainedWidth(width: inputTv.frame.width, font: font!)
@@ -177,9 +177,13 @@ class MessageBaseViewController: UIViewController,UITextViewDelegate {
         let animationCurve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as! Int
         let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! CGFloat
         
-        let keyboardFrame =  notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! CGRect
+        let keyboardFrame =  notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        let keyboardHeight = keyboardFrame.size.height
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve)), animations: {
+            
+            let offset = self.tbView.contentOffset.y + keyboardHeight
+            self.tbView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
             
             self.keyboardSpaceBottomConstraint.constant = keyboardFrame.size.height - self.INPUT_VIEW_MAX_HEIGHT
             self.view.layoutIfNeeded()

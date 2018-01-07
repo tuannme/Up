@@ -53,7 +53,6 @@
 		CA66BF601E647383009F1607 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66BF5F1E647383009F1607 /* LocationManager.swift */; };
 		CA742D6E1E61DB1E00E15A7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */; };
 		CA742D751E629EA000E15A7A /* SpinnerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA742D741E629EA000E15A7A /* SpinnerSwift.swift */; };
-		CA88A6941F4DADBB005318C3 /* ic_keyboard_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CA88A6931F4DADBB005318C3 /* ic_keyboard_camera.png */; };
 		CAC1E8CD1F4C9555007CB9FE /* CameraViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */; };
 		CAC9941D1E70519900C96334 /* ic_bubble_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC9941B1E70519900C96334 /* ic_bubble_blue.png */; };
 		CAC9941E1E70519900C96334 /* ic_bubble_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC9941C1E70519900C96334 /* ic_bubble_gray.png */; };
@@ -65,6 +64,7 @@
 		CAE139EC1F4B09AA000D708C /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */; };
 		CAE139EE1F4B0A49000D708C /* MessageBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */; };
 		CAE139F01F4B0AB5000D708C /* MessageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */; };
+		CAF381DD20025859004EA0BE /* ic_keyboard_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CAF381DC20025859004EA0BE /* ic_keyboard_camera.png */; };
 		F1711D2D1F4D412D008E439C /* OptionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D2C1F4D412D008E439C /* OptionViewCell.swift */; };
 		F1711D331F4D4F24008E439C /* CameraKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D321F4D4F24008E439C /* CameraKeyBoardViewController.swift */; };
 		F1711D351F4D5424008E439C /* DrawKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1711D341F4D5424008E439C /* DrawKeyboardViewController.swift */; };
@@ -148,7 +148,6 @@
 		CA742D331E612D3700E15A7A /* Up-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Up-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA742D6D1E61DB1E00E15A7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CA742D741E629EA000E15A7A /* SpinnerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerSwift.swift; sourceTree = "<group>"; };
-		CA88A6931F4DADBB005318C3 /* ic_keyboard_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_keyboard_camera.png; path = ../../../../../../Downloads/ic_keyboard_camera.png; sourceTree = "<group>"; };
 		CAC1E8CC1F4C9555007CB9FE /* CameraViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewCell.swift; sourceTree = "<group>"; };
 		CAC9941B1E70519900C96334 /* ic_bubble_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_bubble_blue.png; sourceTree = "<group>"; };
 		CAC9941C1E70519900C96334 /* ic_bubble_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_bubble_gray.png; sourceTree = "<group>"; };
@@ -160,6 +159,7 @@
 		CAE139EB1F4B09AA000D708C /* MessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
 		CAE139ED1F4B0A49000D708C /* MessageBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBaseViewController.swift; sourceTree = "<group>"; };
 		CAE139EF1F4B0AB5000D708C /* MessageGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGroupViewController.swift; sourceTree = "<group>"; };
+		CAF381DC20025859004EA0BE /* ic_keyboard_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_keyboard_camera.png; sourceTree = "<group>"; };
 		F1711D2C1F4D412D008E439C /* OptionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionViewCell.swift; sourceTree = "<group>"; };
 		F1711D321F4D4F24008E439C /* CameraKeyBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraKeyBoardViewController.swift; sourceTree = "<group>"; };
 		F1711D341F4D5424008E439C /* DrawKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawKeyboardViewController.swift; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 		1A7CB3D51E6E93DF001494A6 /* chat_icon */ = {
 			isa = PBXGroup;
 			children = (
-				CA88A6931F4DADBB005318C3 /* ic_keyboard_camera.png */,
+				CAF381DC20025859004EA0BE /* ic_keyboard_camera.png */,
 				CAC9941B1E70519900C96334 /* ic_bubble_blue.png */,
 				CAC9941C1E70519900C96334 /* ic_bubble_gray.png */,
 				1A7CB3D61E6E93DF001494A6 /* ic_camera.png */,
@@ -571,7 +571,7 @@
 				TargetAttributes = {
 					1A135A641E5BECEE00655294 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GJE9S37JFS;
+						DevelopmentTeam = USQFGC88U6;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -650,7 +650,7 @@
 				1A7CB3CC1E6E75DC001494A6 /* ic_user.png in Resources */,
 				1A7CB3C91E6E75DC001494A6 /* ic_facebook.png in Resources */,
 				1A7CB3D01E6E75DC001494A6 /* ic_tab_timeline.png in Resources */,
-				CA88A6941F4DADBB005318C3 /* ic_keyboard_camera.png in Resources */,
+				CAF381DD20025859004EA0BE /* ic_keyboard_camera.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,7 +940,7 @@
 			baseConfigurationReference = C1E24575D623699B010C03B4 /* Pods-Up+.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = USQFGC88U6;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -958,7 +958,7 @@
 			baseConfigurationReference = 52E37D4A5A445D87D60FA352 /* Pods-Up+.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GJE9S37JFS;
+				DEVELOPMENT_TEAM = USQFGC88U6;
 				INFOPLIST_FILE = "Up+/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
